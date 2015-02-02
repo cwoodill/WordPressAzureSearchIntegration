@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Search form with AngualrJS</title>
+    <link rel="stylesheet" href="Content/bootstrap.min.css" type="text/css" />
+    <script src="./scripts/angular.js"></script>
+    <script src="./scripts/angular-ui/ui-bootstrap.min.js"></script>
+    <script src="./scripts/App.js"></script>
+    <script src="./scripts/AzureSearchController.js"></script>
+
+</head>
+<body>
+    <div ng-app="app">
+        <div ng-controller="SearchController as search">
+            <div class="container-fluid">
+                <form name="search.searchForm" class="form-inline" ng-submit="search.submit()">
+                    <label for="inputEmail">Search Terms:</label>
+                    <input type="text" class="input-medium search-query" ng-minlength="5" ng-required="true" ng-model="search.keywords">
+                    <label for="inputEmail">Sort By:</label>
+                    <div class="btn-group">
+                        <label class="btn btn-primary" ng-model="search.orderby" btn-radio="'Relevance'">Relevance</label>
+                        <label class="btn btn-primary" ng-model="search.orderby" btn-radio="'Create Date'">Create Date</label>
+                    </div>
+                    <input name="submit" class="submit btn btn-default" id="submit" style="display: inline-block;" type="submit" value="Search">
+                </form>
+                <div ng-show="search.showSearchResults">
+                    <h3>Search Results</h3>
+                </div>
+                <div ng-repeat="result in search.results">
+                    <a class="h1" href="http://wordpressazuresearchintegration.azurewebsites.net/?p={{result.Id}}">{{result.Title}}</a>
+                    <div class="h6" ng-bind-html="result.CreateDateAsString | unsafe"></div>
+                    <div ng-bind-html="result.Excerpt | unsafe"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

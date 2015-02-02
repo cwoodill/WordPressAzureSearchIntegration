@@ -1,0 +1,634 @@
+﻿{
+    "status": "ok",
+    "count": 10,
+    "count_total": 291,
+    "pages": 30,
+    "posts": [
+        {
+            "id": 12501,
+            "type": "post",
+            "slug": "performance-testing-wordpress-on-microsoft-azure",
+            "url": "http:\/\/wordpressazuresearchintegration.azurewebsites.net\/?p=12501",
+            "status": "publish",
+            "title": "Performance Testing WordPress on Microsoft Azure",
+            "title_plain": "Performance Testing WordPress on Microsoft Azure",
+            "content": "<p>Over Christmas, I developed a set of performance tests against all the various hosting plans in Microsoft Azure using the basic Bakery ASP.NET application.&nbsp; <a href=\"http:\/\/www.microsofttrends.com\/2014\/12\/27\/azure-web-sites-performance-analysis-hosting-plans-compared\/\">The results are published here<\/a>.<\/p>\n<p>In renovating this blog for 2015, I have started moving it to SQL Azure using the <a href=\"http:\/\/wordpress.brandoo.pl\/project\/\">Brandoo WordPress Plugin for SQL Server<\/a> and wanted to test the performance.&nbsp; This gave me the opportunity to do the same performance test but with a more real world application \u2013 running a WordPress blog.&nbsp; Here are the results.<\/p>\n<h1>Shared<\/h1>\n<p>Shared provides reasonable scalability but the quotas are quickly overloaded by WordPress.&nbsp; With 4 concurrent users, I was able to disable the site by overloading the quotas.&nbsp; <\/p>\n<h1>Small<\/h1>\n<p>Using my earlier performance tests, I have concluded that Basic and Standard small essentially perform the same way.&nbsp; With Standard, you have more scalability options but the basic VM performance is the same.<\/p>\n<p>In the same as my previous tests, I found that Basic or Standard Small were too small to handle any serious load.&nbsp; While they don\u2019t break, with more than 8 concurrent users the response time becomes very slow at more than 5 seconds on average to respond to the request.&nbsp; <\/p>\n<p>If you look at the Azure dashboard, it seems to be maxed out at 70-80 requests per minute.&nbsp; <\/p>\n<p><a href=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2015\/01\/image5.png\"><img width=\"758\" height=\"196\" title=\"image\" style=\"border: 0px currentcolor; border-image: none; display: inline;\" alt=\"image\" src=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2015\/01\/image_thumb5.png\" border=\"0\"><\/a><\/p>\n<h1>Medium<\/h1>\n<p>In our previous tests, Basic and Standard Medium did quite well.&nbsp; They scaled nicely until about 50 concurrent users and then slowed down as the instance was overloaded.<\/p>\n<p>In this WordPress test, scalability was improved over Small.&nbsp; While Small peaked at 80 requests per minute, Medium peaked at 170 requests per minute.&nbsp; However, performance degradation still occurred at 8 concurrent users although the drop wasn\u2019t as significant as Small.&nbsp; With Medium, performance with 20 concurrent users is still below 5 seconds under load per request.&nbsp; However, with 50 users, that jumps to 17 seconds per request on average.<\/p>\n<h1>Large<\/h1>\n<p>As expected, Large performs really well and scales a lot better than Small or Medium.&nbsp; It performs solidly at 8 concurrent users with only minor drop off in performance.&nbsp; Even at 20 concurrent users, the average response time is still under 5 seconds.&nbsp; At peak, the single instance is able to generate 575 requests per minute.<\/p>\n<h1>Shared x 3<\/h1>\n<p>Shared x 3 provides similar scalability to Shared which is rock solid.&nbsp; However, you\u2019re still up against quota limitations but they have been tripled because of the three instances.&nbsp; This is particularly helpful with CPU time and memory usage in that WordPress seems to spike just above the memory threshold of 512 MB for a single instance from time to time when it is under load (it\u2019s probably not WordPress but the&nbsp; .NET run time accumulating garbage to be collected).&nbsp; With 1.5 MB in memory usage available, WordPress sits comfortable within that threshold.<\/p>\n<p>However, running more than 8 concurrent users will use up the available CPU time within 5 minutes and shut down the site, even with three instances running.&nbsp; It can handle the surge in traffic better than a single Shared instance but it cannot handle a sustained load.<\/p>\n<h1>Medium x 3<\/h1>\n<p>Basic Medium x 3 provides very good scalability and superior performance to a single Standard Large server.&nbsp; Given the cost of 3 Basic Mediums is $357 \/ month and a single Standard Large is $314 \/ month, you\u2019re better to scale horizontally across Medium instances than go up to the Large instance.&nbsp; <\/p>\n<p>Even at 50 concurrent users pounding away, the three Medium instances were still serving pages in under 5 seconds on average.&nbsp;&nbsp; This is almost double the performance of the single Standard instance we tested above.<\/p>\n<h1>Large x 3<\/h1>\n<p>Basic Large x 3 can&nbsp; handle a LOT of traffic.&nbsp; It could easily handle 20 concurrent users at full speed with no degradation in performance.&nbsp; With 50 users, we were still running less than 5 seconds for an average page request.&nbsp; Even with 100 concurrent users, the response time was about 6 seconds per page load.<\/p>\n<p>The site was able to peak at more than 1200 requests per minute \u2013 that\u2019s about 1.7 million requests per day.<\/p>\n<p><a href=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2015\/01\/image6.png\"><img width=\"754\" height=\"208\" title=\"image\" style=\"border: 0px currentcolor; border-image: none; display: inline;\" alt=\"image\" src=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2015\/01\/image_thumb6.png\" border=\"0\"><\/a><\/p>\n",
+            "excerpt": "<p>Over Christmas, I developed a set of performance tests against all the various hosting plans in Microsoft Azure using the basic Bakery ASP.NET application.&nbsp; The results are published here. In renovating this blog for 2015, I have started moving it to SQL Azure using the Brandoo WordPress Plugin for SQL Server and wanted to test [&hellip;]<\/p>\n",
+            "date": "2015-01-07 15:50:53",
+            "modified": "2015-01-07 15:50:53",
+            "categories": [
+                {
+                    "id": 3,
+                    "slug": "azure",
+                    "title": "Azure",
+                    "description": "",
+                    "parent": 0,
+                    "post_count": 114
+                }
+            ],
+            "tags": [
+                {
+                    "id": 9,
+                    "slug": "azure",
+                    "title": "Azure",
+                    "description": "",
+                    "post_count": 4
+                },
+                {
+                    "id": 10,
+                    "slug": "azure-web-sites",
+                    "title": "Azure Web Sites",
+                    "description": "",
+                    "post_count": 4
+                },
+                {
+                    "id": 14,
+                    "slug": "microsoft",
+                    "title": "Microsoft",
+                    "description": "",
+                    "post_count": 4
+                },
+                {
+                    "id": 19,
+                    "slug": "wordpress",
+                    "title": "WordPress",
+                    "description": "",
+                    "post_count": 2
+                }
+            ],
+            "author": {
+                "id": 1,
+                "slug": "cwoodill",
+                "name": "cwoodill",
+                "first_name": "",
+                "last_name": "",
+                "nickname": "cwoodill",
+                "url": "",
+                "description": ""
+            },
+            "comments": [
+            ],
+            "attachments": [
+            ],
+            "comment_count": 0,
+            "comment_status": "open",
+            "custom_fields": {
+            }
+        },
+        {
+            "id": 12391,
+            "type": "post",
+            "slug": "office-365-delve-adopts-pinterest-style-boards",
+            "url": "http:\/\/wordpressazuresearchintegration.azurewebsites.net\/?p=12391",
+            "status": "publish",
+            "title": "Office 365 Delve Adopts Pinterest Style Boards",
+            "title_plain": "Office 365 Delve Adopts Pinterest Style Boards",
+            "content": "<p>Microsoft has just announced the addition of a new feature in Delve \u2013 the ability to create Boards.\u00a0 Boards allow you to pin items in Delve to a particular topic and save them.\u00a0 They are shared across the enterprise so that you can have a collection of items that are kept together and added by members of your team.\u00a0 Board represent a way to curate content generated by delve so that it can be preserved and shared.<\/p>\n<p>If you want to see where the idea comes from, just check out <a href=\"www.pinterest.com\">Pinterest<\/a> \u2013 they have had a similar implementation for consumer facing social networking.<\/p>\n<div id=\"scid:5737277B-5D6D-4f48-ABFC-DD9C333F4C5D:5970f794-6973-4e55-ba2b-31c1a91381bd\" class=\"wlWriterEditableSmartContent\" style=\"margin: 0px; padding: 0px; float: none; display: inline;\">\n<div><object width=\"425\" height=\"355\"><param name=\"movie\" value=\"http:\/\/www.youtube.com\/v\/YjBEm-WH4mw&amp;hl=en\" \/><embed src=\"http:\/\/www.youtube.com\/v\/YjBEm-WH4mw&amp;hl=en\" type=\"application\/x-shockwave-flash\" width=\"425\" height=\"355\" \/><\/object><\/div>\n<\/div>\n<p><img src=\"http:\/\/officeblogswest.blob.core.windows.net\/wp-content\/2014\/12\/Delve-Boards-2.png\" alt=\"Delve Boards 2\" \/><\/p>\n",
+            "excerpt": "<p>Microsoft has just announced the addition of a new feature in Delve \u2013 the ability to create Boards.\u00a0 Boards allow you to pin items in Delve to a particular topic and save them.\u00a0 They are shared across the enterprise so that you can have a collection of items that are kept together and added by [&hellip;]<\/p>\n",
+            "date": "2015-01-07 11:56:24",
+            "modified": "2015-01-07 11:56:24",
+            "categories": [
+                {
+                    "id": 7,
+                    "slug": "sharepoint",
+                    "title": "SharePoint and Office 365",
+                    "description": "",
+                    "parent": 0,
+                    "post_count": 136
+                }
+            ],
+            "tags": [
+                {
+                    "id": 12,
+                    "slug": "delve",
+                    "title": "Delve",
+                    "description": "",
+                    "post_count": 0
+                },
+                {
+                    "id": 14,
+                    "slug": "microsoft",
+                    "title": "Microsoft",
+                    "description": "",
+                    "post_count": 4
+                },
+                {
+                    "id": 15,
+                    "slug": "office-365",
+                    "title": "Office 365",
+                    "description": "",
+                    "post_count": 0
+                }
+            ],
+            "author": {
+                "id": 1,
+                "slug": "cwoodill",
+                "name": "cwoodill",
+                "first_name": "",
+                "last_name": "",
+                "nickname": "cwoodill",
+                "url": "",
+                "description": ""
+            },
+            "comments": [
+            ],
+            "attachments": [
+            ],
+            "comment_count": 0,
+            "comment_status": "open",
+            "custom_fields": {
+            }
+        },
+        {
+            "id": 12371,
+            "type": "post",
+            "slug": "migrating-to-azure-cdn-success",
+            "url": "http:\/\/wordpressazuresearchintegration.azurewebsites.net\/?p=12371",
+            "status": "publish",
+            "title": "Migrating to Azure CDN \u2013 Success!",
+            "title_plain": "Migrating to Azure CDN \u2013 Success!",
+            "content": "<p>As <a href=\"http:\/\/www.microsofttrends.com\/2014\/12\/30\/microsoft-azure-cdn-rolled-back-due-to-lack-of-cache-control\/\">posted<\/a> last week, I ran into some challenges with implementing Azure CDN.&nbsp; The lack of cache control in Azure CDN combined with the fact that WordPress doesn\u2019t including any cache control information by default meant that my site was cached for a week with no ability to invalidate it.&nbsp; So after a week of waiting until the cache expiry ran out, I was ready to try again!&nbsp; This time, I was able to successfully migrate with the following steps.<\/p>\n<h1>Step 1: Ensure You have HTTP CACHE-CONTROL Headers<\/h1>\n<p>By default, WordPress only includes HTTP CACHE-CONTROL headers on the admin pages, which means that the CDN never releases the cached pages until its default expiry (which in the case of Azure CDN is 7 days).&nbsp; In order to fix this, I updated the header.php file to include some HTTP CACHE-CONTROL information.<\/p>\n<p>&lt;?php<br \/>\nheader(&#8220;Cache-Control: public, max-age=900, s-maxage=900&#8243;); \/\/ HTTP\/1.1<br \/>\n?&gt;\n<p>This includes the HTTP CACHE-CONTROL directive to expire the page after a maximum of 900 seconds (e.g. 15 minutes).&nbsp; <\/p>\n<p><a href=\"http:\/\/msdn.microsoft.com\/en-us\/library\/azure\/gg680299.aspx\">For static content such as javascript files, images, etc. you can set the HTTP CACHE-CONTROL directive using the web.config<\/a>:<\/p>\n<pre>&lt;configuration&gt;&nbsp;&nbsp; &lt;system.webServer&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;staticContent&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;clientCache cacheControlMode=\"UseMaxAge\" cacheControlMaxAge=\"3.00:00:00\" \/&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;\/staticContent&gt;&nbsp;&nbsp; &lt;\/system.webServer&gt; \n&lt;\/configuration&gt;<\/pre>\n<\/p>\n<p>In this example, the maximum age is set to 3 days instead of the CDN\u2019s default of 7 days.<\/p>\n<h1>Step 2: Test Your Page with Fiddler<\/h1>\n<p><a href=\"http:\/\/www.telerik.com\/fiddler\">Fiddler<\/a> is a really good testing tool for Azure in a number of scenarios, but in this case it provides a method to test the HTTP headers and ensure that the HTTP cache information is coming through.&nbsp; Here is fiddler testing my home page:<\/p>\n<p><a href=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2015\/01\/image.png\"><img width=\"758\" height=\"29\" title=\"image\" style=\"border-image: none; display: inline;\" alt=\"image\" src=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2015\/01\/image_thumb.png\" border=\"0\"><\/a>\n<\/p>\n<h1>Step 3: Create the CDN<\/h1>\n<p>Creating the CDN is easy \u2013 you just go to the Azure Portal and create a new CDN and point it at your existing Azure Web Site.&nbsp; <\/p>\n<p>Note that it takes about an hour for the CDN to cache all your content, so until this happens you\u2019ll see an error page.&nbsp; <\/p>\n<h1>Step 4: Enable HTTPS and Query String <\/h1>\n<p>You can enable HTTPS so that cached content is served even with HTTPS and you can turn on Query String which enables the CDN to view each query string as a unique request.&nbsp; For example, with Query String turned on <a href=\"http:\/\/www.microsofttrends.com?version=1\">www.microsofttrends.com?version=1<\/a> is treated as a different page as <a href=\"http:\/\/www.microsofttrends.com?version=2\">www.microsofttrends.com?version=2<\/a>.&nbsp; <\/p>\n<h1>Step 5: Test Your Caching in CDN<\/h1>\n<p>Once your CDN is setup, I would recommend testing your caching approach by making a change to your site and ensuring it flows through as expected based on your caching rules.&nbsp; As noted above, in my case, the home page should be cached for a maximum of 15 minutes.&nbsp; <\/p>\n<p>In order to test this, I made a minor change to the first sentence of the last post I wrote.&nbsp; In the \u201clive\u201d site, it now says \u201cOffice365\u201d instead of \u201cOffice 365\u201d.&nbsp; <\/p>\n<p><a href=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2015\/01\/image1.png\"><img width=\"754\" height=\"233\" title=\"image\" style=\"border: 0px currentcolor; border-image: none; display: inline;\" alt=\"image\" src=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2015\/01\/image_thumb1.png\" border=\"0\"><\/a><\/p>\n<p>When I access the CDN version, I still see the original cached version.&nbsp; <\/p>\n<p><a href=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2015\/01\/image2.png\"><img width=\"754\" height=\"234\" title=\"image\" style=\"border: 0px currentcolor; border-image: none; display: inline;\" alt=\"image\" src=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2015\/01\/image_thumb2.png\" border=\"0\"><\/a><br \/>\n<\/p>\n<p><\/p>\n<p>And now, 15 minutes later, I see the updated post:<\/p>\n<p><a href=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2015\/01\/image3.png\"><img width=\"754\" height=\"223\" title=\"image\" style=\"border: 0px currentcolor; border-image: none; display: inline;\" alt=\"image\" src=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2015\/01\/image_thumb3.png\" border=\"0\"><\/a><\/p>\n<h1>Step 6: Change Your Domain Name to Point to the CDN End-Point<\/h1>\n<p>The last step is to change your domain name CNAME record to point to the CDN end point instead of your Azure Web Site.&nbsp; <\/p>\n<p>First, you need to remove the domain name record from your Azure web site (this will take your site offline).&nbsp; Second, you need to move your CNAME record in your domain name manager (I use GoDaddy to manage my domain and they provide an admin tool to do this).&nbsp; Finally, you need to add your domain name into the CDN through the Manage Domains feature.<\/p>\n<p><a href=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2015\/01\/image4.png\"><img width=\"449\" height=\"318\" title=\"image\" style=\"border: 0px currentcolor; border-image: none; margin-right: auto; margin-left: auto; float: none; display: block;\" alt=\"image\" src=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2015\/01\/image_thumb4.png\" border=\"0\"><\/a>\n<\/p>\n<h1>Success!<\/h1>\n<p>MicrosoftTrends is now running successfully through CDN with the appropriate caching rules working as expected.&nbsp; Running tests against the site shows a significant improvement in speed, especially from places such as Japan, China, India, Australia, etc. which have typically high latency to the US data centers.&nbsp; <\/p>\n",
+            "excerpt": "<p>As posted last week, I ran into some challenges with implementing Azure CDN.&nbsp; The lack of cache control in Azure CDN combined with the fact that WordPress doesn\u2019t including any cache control information by default meant that my site was cached for a week with no ability to invalidate it.&nbsp; So after a week of [&hellip;]<\/p>\n",
+            "date": "2015-01-06 09:11:26",
+            "modified": "2015-01-06 09:11:26",
+            "categories": [
+                {
+                    "id": 3,
+                    "slug": "azure",
+                    "title": "Azure",
+                    "description": "",
+                    "parent": 0,
+                    "post_count": 114
+                }
+            ],
+            "tags": [
+                {
+                    "id": 9,
+                    "slug": "azure",
+                    "title": "Azure",
+                    "description": "",
+                    "post_count": 4
+                },
+                {
+                    "id": 10,
+                    "slug": "azure-web-sites",
+                    "title": "Azure Web Sites",
+                    "description": "",
+                    "post_count": 4
+                },
+                {
+                    "id": 11,
+                    "slug": "cdn",
+                    "title": "CDN",
+                    "description": "",
+                    "post_count": 0
+                },
+                {
+                    "id": 14,
+                    "slug": "microsoft",
+                    "title": "Microsoft",
+                    "description": "",
+                    "post_count": 4
+                },
+                {
+                    "id": 19,
+                    "slug": "wordpress",
+                    "title": "WordPress",
+                    "description": "",
+                    "post_count": 2
+                }
+            ],
+            "author": {
+                "id": 1,
+                "slug": "cwoodill",
+                "name": "cwoodill",
+                "first_name": "",
+                "last_name": "",
+                "nickname": "cwoodill",
+                "url": "",
+                "description": ""
+            },
+            "comments": [
+            ],
+            "attachments": [
+            ],
+            "comment_count": 0,
+            "comment_status": "open",
+            "custom_fields": {
+            }
+        },
+        {
+            "id": 12121,
+            "type": "post",
+            "slug": "top-10-2015-predictions-for-microsoft-azure",
+            "url": "http:\/\/wordpressazuresearchintegration.azurewebsites.net\/?p=12121",
+            "status": "publish",
+            "title": "Top 10 2015 Predictions for Microsoft Azure",
+            "title_plain": "Top 10 2015 Predictions for Microsoft Azure",
+            "content": "<p>Like Office 365, Microsoft Azure has undergone a lot of change in the past year.&nbsp; Throughout 2014, it seemed like there was a new service being released in either preview or production release every few weeks.&nbsp;&nbsp; Looking forward to 2015, here is list of predictions for Azure in 2015.<\/p>\n<h1>10. Continued Focus on Security and Encryption<\/h1>\n<p>One of Microsoft\u2019s key differentiators as an enterprise cloud provider is its focus on security.&nbsp; Microsoft already has many of the key certifications, public commitments to enterprise grade security, etc. and in 2015 expect the investments to continue.&nbsp; <\/p>\n<h1>9. Microsoft Shrinks the Market Share Gap with Amazon<\/h1>\n<p>Amazon is still the dominant cloud supplier and will continue to be in 2015.&nbsp; However, in 2014, <a href=\"https:\/\/www.srgresearch.com\/articles\/microsoft-pulling-ahead-pack-chasing-amazon\">Microsoft\u2019s growth rate outpaced Amazon<\/a> and I think we\u2019ll see the same in 2015 as Microsoft closes the gap in market share.&nbsp; <\/p>\n<p><img width=\"607\" height=\"367\" alt=\"cis q114\" src=\"https:\/\/www.srgresearch.com\/media\/uploads\/CIS_Q114.jpg\"><\/p>\n<p>Also watch for data center expansion in 2015 as a way to take away market share from Amazon \u2013 Microsoft has launched now in China and Australia for example and this geographic expansion will continue as we move into 2015.<\/p>\n<h1>8. New Versions of Visual Studio, ASP.NET, .NET Framework<\/h1>\n<p>While not technically an Azure feature, the new releases of Visual Studio, ASP.NET and the .NET framework will further integrate, support and provide new ways of building solutions for Microsoft Azure.&nbsp; The <a href=\"http:\/\/azure.microsoft.com\/blog\/2014\/11\/12\/announcing-azure-sdk-2-5-for-net-and-visual-studio-2015-preview\/\">new Azure SDK<\/a> provides better diagnostics, improved deployment tools for Azure, support for Blob storage, improved HD Insight support and the new version of Visual Studio supports Azure connected services, enterprise SSO, code analysis for Azure, and publishing to Azure integration.<\/p>\n<p><img alt=\".net_2015.\" src=\"https:\/\/photo.tinhte.vn\/store\/2014\/11\/2638451_.net_2015.png\"><\/p>\n<h2>7. Services in Preview Launch as Production Services<\/h2>\n<p>There were many new services launched in 2014 for <a href=\"http:\/\/azure.microsoft.com\/en-us\/services\/preview\/\">Microsoft Azure in preview<\/a> including:<\/p>\n<ul>\n<li>Improvements to Azure SQL<\/li>\n<li>Better storage and shared file systems<\/li>\n<li>A number of big data services (Batch, Machine Learning, Data Factory, Storm, Stream Analytics, etc)<\/li>\n<li>Live media streaming<\/li>\n<li>NoSQL document based database<\/li>\n<li>Azure Search<\/li>\n<li>Site recovery through replication<\/li>\n<\/ul>\n<p>In particular the big data services are a major strategic investment for Microsoft and a key differentiator in the fight with other cloud service providers for market share.&nbsp; Expect these to be promoted to enterprise class production ready services and a LOT of marketing and promotion around them in 2015.<\/p>\n<h2>6. Microsoft Struggles with the Cannibalization of SQL Server<\/h2>\n<p><a href=\"http:\/\/www.nasdaq.com\/aspx\/call-transcript.aspx?StoryId=2483265&amp;Title=microsoft-msft-presents-at-deutsche-bank-technology-conference-2014-transcript-\">Microsoft\u2019s number one product is SQL Server with a massive $6 billion in revenue for Microsoft<\/a>.&nbsp; The SQL Server business grew by 11% in 2014, but Azure growth was more than 100%.&nbsp; <\/p>\n<p>Microsoft has a fundamental problem with SQL Server as it pivots towards the cloud:<\/p>\n<ul>\n<li>The cost of SQL Server running in the cloud through IAAS is quite expensive, especially compared to NOSQL alternatives.&nbsp; I can run a basic Windows VM for as little as $14 \/ month, but installing SQL Standard drives that price up to $315 \/ month or $1,1777 \/ month for SQL Enterprise.&nbsp; The cost of a real enterprise class SQL cluster running through Azure on IAAS would cost thousands of dollars per month when you account for high availability and clustering requirements.<\/li>\n<li>Microsoft has Azure SQL, which is a PAAS based offering effectively competing with traditional SQL Server running either on premise or in the cloud.&nbsp; <a href=\"http:\/\/www.microsofttrends.com\/2014\/02\/15\/azure-sql-vs-traditional-sql-clusters-massive-price-differences-for-small-databases-2\/\">Azure SQL is significantly cheaper than running a full SQL Server<\/a> license especially for smaller databases.&nbsp; <\/li>\n<li>Microsoft has multiple NOSQL alternatives including Hadoop, Table Storage, and Document DB.&nbsp; Each of these services can replace a traditional SQL database in certain scenarios. <\/li>\n<\/ul>\n<p>In the same way that Office 365 has cannibalized on premise implementations of SharePoint, Exchange and Office, Azure will start to cannibalize all those SQL Server databases running on premise.&nbsp; It will happen slowly because of the nature of migrating any kind of database but over the next 3-5 years expect the shift to become more visible.&nbsp; <\/p>\n<p>Microsoft\u2019s struggle in 2015 will be how to position its traditional SQL Server business (in particular all of those customers being sold on upgrades to SQL 2014) vs. customers who might start to look at moving to NOSQL alternatives as they move to the cloud.<\/p>\n<h1>5. Microsoft Continues to Pivot on Open Source, Linux and Partnerships<\/h1>\n<p>Microsoft will continue its pivot on embracing Linux, open source, and other non-Microsoft partnerships such as SalesForce, IBM, Oracle, Dropbox, etc.&nbsp; Microsoft has been busy in 2014 open sourcing a number of their core platforms including <a href=\"http:\/\/www.microsofttrends.com\/2014\/11\/12\/net-platform-goes-open-source-and-cross-platform\/\">ASP.NET and big chunks of the .NET framework<\/a>.&nbsp; They have also moved to a cross-platform model for the .NET framework.&nbsp; Microsoft has also announced partnerships with SalesForce and Dropbox to support integration between Office 365 and Azure.<\/p>\n<p><img style=\"margin-right: auto; margin-left: auto; float: none; display: block;\" src=\"http:\/\/openness.blob.core.windows.net\/openmedia\/2014\/10\/Microsoft-Loves-Linux-Openness-e1414168049882.png\">\n<p>Expect this to continue and expand in 2015 as Microsoft moves from a proprietary software company to an open cloud services company.&nbsp; Microsoft has recognized that their future is hosting EVERYTHING, not just Microsoft designed and engineered products and this will continue to expand in 2015.<\/p>\n<h1>4. Price Wars<\/h1>\n<p>Microsoft and all the other major cloud providers are in a massive price war which is driving prices down.&nbsp; <strong>If you had purchased basic cloud storage in 2012, you would have paid $0.14 per GB.&nbsp; In 2013, that price was $0.07 per GB.&nbsp; At the end of 2014, it\u2019s as low as $0.03 per GB.&nbsp;&nbsp; Similarly, an A3 VM would have cost $0.48 per hour in 2012 and is now running at $0.32 per hour.<\/strong><\/p>\n<p>Expect the price drops to continue in 2015 as Microsoft competes with Amazon and others for market share and the economies of hardware, storage, etc. continue to improve over time.&nbsp; <\/p>\n<h1>3. Hadoop and Big Data Go Mainstream<\/h1>\n<p>Big data has been a buzzword in the industry for the past several years, but it has been more hype in many cases than practice.&nbsp; Hadoop became the key platform for big data in 2014 with Microsoft embracing it as its core platform.&nbsp; <a href=\"http:\/\/blogs.wsj.com\/cio\/2014\/04\/12\/hadoop-there-it-is-big-data-tech-gaining-traction\/\">Hadoop providers have received massive investments and their revenue is expected to grow in 2015 by 60% year over year.<\/a><\/p>\n<p>However, there have also been significant barriers to adoption and CIO\u2019s have been slow to commit to big data platforms.&nbsp; 2014 was a year of many proof of concepts, investigations and hype demos but also lots of concerns, trepidations and adoption challenges for big data technologies.<\/p>\n<p>In the same way that cloud saw massive growth in 2014 as it went from hype to mainstream, I see 2015 as being a pivotal year in the big data story as CIO\u2019s start to move from hype, research and proof of concept stage to mainstream use of these technologies.<\/p>\n<p>In addition, as Microsoft\u2019s new big data services come online such as Batch, Storm, Stream, Machine Learning, etc. this will start to reduce the complexity of engineering big data services and move the market forward to embrace the big data promise with less of the need for data scientists and PHD computer scientists to figure it out.&nbsp; <\/p>\n<h1>2. The Resurgence of PAAS<\/h1>\n<p>Microsoft originally championed the cloud as PAAS and quickly had to backtrack into the IAAS business as Amazon took the market.&nbsp; However, running virtual machines in the cloud in the same way as on premise is not economical in the long run because you still end up owning the costs for maintenance, patching, upgrades, etc.&nbsp; Microsoft has gone head to head with Amazon and other IAAS vendors and can now compete well in basic VM hosting \u2013 however, this is ultimately a race to the bottom as the prices continue to drop.&nbsp; <\/p>\n<p>The real differentiator for Microsoft in the long run is PAAS \u2013 it has the development tools, the APIs, the stacks and the developer community to making running your own virtual machines seem as antiquated as running them on premise.&nbsp; Some key changes to Azure that have happened in 2014 will make PAAS an increasingly compelling option in 2015:<\/p>\n<ul>\n<li>Azure Web Sites as a low cost, high scale option for running public facing web sites is a very attractive option over running your own servers.&nbsp; Scalability of the Azure Web Site offering is already really good.<\/li>\n<li>Azure SQL continues to <a href=\"http:\/\/www.zdnet.com\/article\/microsoft-cuts-azure-sql-cloud-database-prices\/\">drop in price<\/a> while increasing in features and performance.&nbsp; The new version of Azure SQL (currently in preview) brings almost complete compatibility as well as improved performance to the existing service.&nbsp; <\/li>\n<li>Microsoft\u2019s new big data offerings are all PAAS services and they provide quasi control over how many VMs, instances, and performance is provided to scale as needed while not requiring any management of the underlying infrastructure.&nbsp; For example, the new Azure Batch provides access to pools of VMs on demand with no need to maintain them \u2013 the service manages them as a generic pool including provisioning and deprovisioning.<\/li>\n<\/ul>\n<p>For most customers, PAAS will provide a more economical, easier to maintain and scalable service than building your own virtual infrastructure using IAAS.&nbsp; As additional services and finer grain control over PAAS services in terms of dedicated performance units, scalable tiers, etc. the case for IAAS based services is being undermined by easier to use PAAS services.<\/p>\n<h1>1. Performance Challenges and Opportunities<\/h1>\n<p>One of the key challenges and opportunities we have seen with Azure is performance and scalability.&nbsp; <a href=\"http:\/\/www.microsofttrends.com\/2014\/10\/19\/performance-and-pricing-comparison-of-new-azure-sql-tiers\/\">For example, running SQL Server on IAAS has been a challenge because of poor I\/O performance<\/a>.&nbsp; We have also seen <a href=\"http:\/\/www.microsofttrends.com\/2014\/12\/27\/azure-web-sites-performance-analysis-hosting-plans-compared\/\">really good scalability from Azure Web Sites<\/a>, especially with the Shared Tier.&nbsp; <\/p>\n<p>The bottom line is that a cloud based VM isn\u2019t the equivalent of a VM running on premise for lots of different reasons.&nbsp; The I\/O performance tends to be poorer, the network latency is harder to control, and if Microsoft is selling performance on Azure SQL as a set of \u201cDedicated Performance Units\u201d which don\u2019t map well to traditional servers.&nbsp; Before launching any cloud service, performance testing is a must to ensure that your particular scenario will scale as expected and perform economically.&nbsp; In some cases, the cost of the scalability is dirt cheap (for example, scaling up an Azure Web Site or load on an Azure SQL database) where in other cases it can be quite costly (for example, scaling up VM\u2019s running SQL Server in IAAS).&nbsp; <\/p>\n<p><a href=\"https:\/\/mscblogs.blob.core.windows.net\/media\/scottgu\/WindowsLiveWriter\/a2f3e6cdd02d_1280A\/image_20.png\"><img width=\"640\" height=\"360\" title=\"image\" alt=\"image\" src=\"https:\/\/mscblogs.blob.core.windows.net\/media\/scottgu\/WindowsLiveWriter\/a2f3e6cdd02d_1280A\/image_thumb_9.png\" border=\"0\"><\/a><\/p>\n<p>Microsoft has been introducing new service tiers that start to address some of these challenges including:<\/p>\n<ul>\n<li><a href=\"http:\/\/azure.microsoft.com\/blog\/2014\/12\/11\/introducing-premium-storage-high-performance-storage-for-azure-virtual-machine-workloads\/\">Faster disks through the new Premium Storage service<\/a><\/li>\n<li><a href=\"http:\/\/weblogs.asp.net\/scottgu\/new-d-series-of-azure-vms-with-60-faster-cpus-more-memory-and-local-ssd-disks\">Faster virtual machines with improved caching and faster performance<\/a><\/li>\n<li><a href=\"https:\/\/weblogs.asp.net\/scottgu\/azure-premium-storage-remoteapp-sql-database-update-live-media-streaming-search-and-more\">Improved performance of Azure SQL and improved scalability for larger databases<\/a><\/li>\n<li><a href=\"http:\/\/azure.microsoft.com\/en-us\/pricing\/details\/sql-database\/\">New Azure SQL pricing models that include dedicated database throughput units and guaranteed performance<\/a><\/li>\n<\/ul>\n<p>Expect more of these types of improvements as we move into 2015 as customers to start to leverage Azure for performance demanding workloads.&nbsp; <\/p>\n",
+            "excerpt": "<p>Like Office 365, Microsoft Azure has undergone a lot of change in the past year.&nbsp; Throughout 2014, it seemed like there was a new service being released in either preview or production release every few weeks.&nbsp;&nbsp; Looking forward to 2015, here is list of predictions for Azure in 2015. 10. Continued Focus on Security and [&hellip;]<\/p>\n",
+            "date": "2014-12-31 15:33:33",
+            "modified": "2014-12-31 15:33:33",
+            "categories": [
+                {
+                    "id": 3,
+                    "slug": "azure",
+                    "title": "Azure",
+                    "description": "",
+                    "parent": 0,
+                    "post_count": 114
+                }
+            ],
+            "tags": [
+                {
+                    "id": 9,
+                    "slug": "azure",
+                    "title": "Azure",
+                    "description": "",
+                    "post_count": 4
+                },
+                {
+                    "id": 10,
+                    "slug": "azure-web-sites",
+                    "title": "Azure Web Sites",
+                    "description": "",
+                    "post_count": 4
+                },
+                {
+                    "id": 13,
+                    "slug": "hadoop",
+                    "title": "Hadoop",
+                    "description": "",
+                    "post_count": 1
+                },
+                {
+                    "id": 17,
+                    "slug": "sql",
+                    "title": "SQL",
+                    "description": "",
+                    "post_count": 2
+                },
+                {
+                    "id": 18,
+                    "slug": "top-10-list",
+                    "title": "Top 10 List",
+                    "description": "",
+                    "post_count": 1
+                }
+            ],
+            "author": {
+                "id": 1,
+                "slug": "cwoodill",
+                "name": "cwoodill",
+                "first_name": "",
+                "last_name": "",
+                "nickname": "cwoodill",
+                "url": "",
+                "description": ""
+            },
+            "comments": [
+            ],
+            "attachments": [
+            ],
+            "comment_count": 0,
+            "comment_status": "open",
+            "custom_fields": {
+            }
+        },
+        {
+            "id": 12101,
+            "type": "post",
+            "slug": "if-you-are-running-wordpress-on-azure-turn-on-photon",
+            "url": "http:\/\/wordpressazuresearchintegration.azurewebsites.net\/?p=12101",
+            "status": "publish",
+            "title": "If You Are Running WordPress on Azure, Turn on Photon!",
+            "title_plain": "If You Are Running WordPress on Azure, Turn on Photon!",
+            "content": "<p>Automattic, the company that maintains WordPress, also maintains a widely used plugin called Jetpack.&nbsp; Within Jetpack, there is a feature called Photon that you can activate that automatically migrates all of your images to WordPress.com\u2019s content delivery network.<\/p>\n<p><a href=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/image12.png\"><img width=\"339\" height=\"113\" title=\"image\" style=\"border: 0px currentcolor; border-image: none; margin-right: auto; margin-left: auto; float: none; display: block;\" alt=\"image\" src=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/image_thumb12.png\" border=\"0\"><\/a><strong><br \/>\nWith that one click, all of your images are now served from a free CDN that will speed up performance world wide and offload traffic from your Azure Web Site subscription.<\/strong>&nbsp; For those of you running large scale or \u201cpremium\u201d WordPress sites on Azure, this may be one way to avoid having to scale up your hosting plan in order to maintain performance around the world.&nbsp; <\/p>\n",
+            "excerpt": "<p>Automattic, the company that maintains WordPress, also maintains a widely used plugin called Jetpack.&nbsp; Within Jetpack, there is a feature called Photon that you can activate that automatically migrates all of your images to WordPress.com\u2019s content delivery network. With that one click, all of your images are now served from a free CDN that will [&hellip;]<\/p>\n",
+            "date": "2014-12-30 08:52:07",
+            "modified": "2014-12-30 08:52:07",
+            "categories": [
+            ],
+            "tags": [
+            ],
+            "author": {
+                "id": 1,
+                "slug": "cwoodill",
+                "name": "cwoodill",
+                "first_name": "",
+                "last_name": "",
+                "nickname": "cwoodill",
+                "url": "",
+                "description": ""
+            },
+            "comments": [
+                {
+                    "id": 232,
+                    "name": "Kevin Bronsdijk (@SeidoKevin)",
+                    "url": "http:\/\/twitter.com\/SeidoKevin",
+                    "date": "2014-12-31 07:57:55",
+                    "content": "<p>Some Interesting articles on Azure CDN &#8211; Thanks for sharing<\/p>\n<p>If desired, you can still host your media assets, WP includes, template files and custom files into Azure CDN. One of the benefits is the ability to configure a Custom Domain, resulting in better SEO ratings apart from all the performance benefits. I recently wrote an article covering the details.<\/p>\n<p><a href=\"http:\/\/devslice.net\/2014\/12\/azure-cdn-and-wordpress-using-w3-total-cache\/\" rel=\"nofollow\">http:\/\/devslice.net\/2014\/12\/azure-cdn-and-wordpress-using-w3-total-cache\/<\/a><\/p>\n<p>PS; have you had challenges moving your existing blog content and design into Azure websites?<\/p>\n",
+                    "parent": 0
+                },
+                {
+                    "id": 233,
+                    "name": "Christopher Woodill",
+                    "url": "http:\/\/www.microsofttrends.com",
+                    "date": "2014-12-31 08:47:55",
+                    "content": "<p>Hi Kevin:<\/p>\n<p>I haven&#8217;t tried this yet but is on my agenda once my CDN cache expires in a few days.  The approach I took which I think should accomplish the same thing is to use Azure Web Site and CDN the entire site &#8211; in theory this should accomplish the same thing but in a simpler fashion than using W3.  This is a new feature in CDN which allows you to integrate directly with the Azure Web Site instead of needing to move all your content into a separate storage container.  <\/p>\n<p>In terms of moving content into Azure web sites, my blog was created from day one in Azure Web Sites so I haven&#8217;t had to migrate to Azure Web Sites.  However, in theory it should be pretty straight forward &#8211; with Web Matrix you get access to the entire file system and you can sync your site and then you just need to migrate your MySQL database.  You can also use WebMatrix to create a local instance of your WordPress site as long as you&#8217;re running a local MySQL database and this works quite well.<\/p>\n",
+                    "parent": 0
+                }
+            ],
+            "attachments": [
+            ],
+            "comment_count": 0,
+            "comment_status": "open",
+            "custom_fields": {
+            }
+        },
+        {
+            "id": 12061,
+            "type": "post",
+            "slug": "microsoft-azure-cdn-rolled-back-due-to-lack-of-cache-control",
+            "url": "http:\/\/wordpressazuresearchintegration.azurewebsites.net\/?p=12061",
+            "status": "publish",
+            "title": "Microsoft Azure CDN Rolled Back Due to Lack of Cache Control",
+            "title_plain": "Microsoft Azure CDN Rolled Back Due to Lack of Cache Control",
+            "content": "<p>Last night, I turned on Azure CDN for the first time.&nbsp; It worked great from a performance perspective, but I ran into a significant limitation that meant I had to roll-back and turn it off \u2013 lack of cache control.<\/p>\n<p>When I launched the <a href=\"http:\/\/www.microsofttrends.com\">www.microsofttrends.com<\/a> web site through Azure CDN, the home page was cached \u2013 permanently.&nbsp; New blog posts weren\u2019t showing up on the home page!<\/p>\n<p>It turns out that WordPress, by default, does not include any HTTP CACHE-CONTROL settings for pages.&nbsp;&nbsp; When launched under CDN, the home page was therefore cached without any expiry date or directive to not cache.&nbsp; <\/p>\n<p><strong>There is no ability to invalidate, control or set expiry rules on cached objects within Azure CDN either through the Azure Portal or programmatically.&nbsp; There also doesn\u2019t seem to be a way to re-issue the caching directive because the page is now cached with the original content.&nbsp; I tried recreating the CDN from scratch but that just recreates the end-point \u2013 the cache itself sticks around and there is no invalidation even when deleting and creating the CDN end-point.<\/strong><\/p>\n<p>The <a href=\"http:\/\/msdn.microsoft.com\/en-us\/library\/azure\/gg680306.aspx\">default time to live for Azure CDN is 7 days<\/a>.&nbsp; In the meantime, it appears I\u2019m stuck and I have rolled back to the original Azure Web Site configuration, remapped my DNS entry back to the standard web site and will await until my cache refreshes!<\/p>\n<h3><strong>In the meantime, there is something that we can all do \u2013 check out the <\/strong><a href=\"http:\/\/feedback.azure.com\/forums\/169397-cdn\"><strong>Azure Feedback Forum<\/strong><\/a><strong> and vote for a change to Azure CDN to provide better control over cache expiry and invalidation.&nbsp; You can vote for the feature and it is already the number one request on the feedback board.&nbsp; The official status for this feature is \u201cplanned\u201d but there is no release date for the feature.&nbsp;&nbsp; <\/strong><\/h3>\n<p><\/p>\n<p><a href=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/image11.png\"><img width=\"754\" height=\"465\" title=\"image\" style=\"border: 0px currentcolor; border-image: none; display: inline;\" alt=\"image\" src=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/image_thumb11.png\" border=\"0\"><\/a><\/p>\n",
+            "excerpt": "<p>Last night, I turned on Azure CDN for the first time.&nbsp; It worked great from a performance perspective, but I ran into a significant limitation that meant I had to roll-back and turn it off \u2013 lack of cache control. When I launched the www.microsofttrends.com web site through Azure CDN, the home page was cached [&hellip;]<\/p>\n",
+            "date": "2014-12-30 08:43:11",
+            "modified": "2014-12-30 08:43:11",
+            "categories": [
+                {
+                    "id": 3,
+                    "slug": "azure",
+                    "title": "Azure",
+                    "description": "",
+                    "parent": 0,
+                    "post_count": 114
+                }
+            ],
+            "tags": [
+            ],
+            "author": {
+                "id": 1,
+                "slug": "cwoodill",
+                "name": "cwoodill",
+                "first_name": "",
+                "last_name": "",
+                "nickname": "cwoodill",
+                "url": "",
+                "description": ""
+            },
+            "comments": [
+                {
+                    "id": 228,
+                    "name": "PTR98760",
+                    "url": "",
+                    "date": "2015-01-05 15:07:25",
+                    "content": "<p>Add a web.config file to the CDN folder to force content expiration for all items:<br \/>\n<a href=\"http:\/\/msdn.microsoft.com\/en-us\/library\/azure\/gg680299.aspx\" rel=\"nofollow\">http:\/\/msdn.microsoft.com\/en-us\/library\/azure\/gg680299.aspx<\/a><\/p>\n",
+                    "parent": 0
+                },
+                {
+                    "id": 229,
+                    "name": "cwoodill",
+                    "url": "",
+                    "date": "2015-01-05 15:10:13",
+                    "content": "<p>Working on a similar solution using the header.php in wordpress &#8211; will test your option as well.  Thanks for the suggestion!<\/p>\n",
+                    "parent": 228,
+                    "author": {
+                        "id": 1,
+                        "slug": "cwoodill",
+                        "name": "cwoodill",
+                        "first_name": "",
+                        "last_name": "",
+                        "nickname": "cwoodill",
+                        "url": "",
+                        "description": ""
+                    }
+                }
+            ],
+            "attachments": [
+            ],
+            "comment_count": 0,
+            "comment_status": "open",
+            "custom_fields": {
+            }
+        },
+        {
+            "id": 11941,
+            "type": "post",
+            "slug": "speed-improvements-from-migrating-to-azure-cdn",
+            "url": "http:\/\/wordpressazuresearchintegration.azurewebsites.net\/?p=11941",
+            "status": "publish",
+            "title": "Speed Improvements from Migrating to Azure CDN",
+            "title_plain": "Speed Improvements from Migrating to Azure CDN",
+            "content": "<p>This web site runs on WordPress on Microsoft Azure Web Sites.&nbsp; As traffic has been increasing, I have been looking for ways to improve performance.&nbsp; One of the key challenges with a global web site such as this blog is serving requests from around the world.&nbsp; <\/p>\n<p>As an experiment, I have migrated the entire web site to <a href=\"http:\/\/azure.microsoft.com\/en-us\/services\/cdn\/\">Microsoft\u2019s Content Delivery Network<\/a>.&nbsp; Microsoft CDN provides direct integration with Azure Web Sites and migrating to it was as simple as turning it on and then re-pointing the domain to the CDN URL instead of the Azure Web Site URL.&nbsp; <\/p>\n<p>To turn on CDN \u2013 you create a CDN service and point it at your existing Azure Web Site or Storage Account.&nbsp; In this case, I pointed it to the existing <a href=\"http:\/\/www.microsofttrends.com\">www.microsofttrends.com<\/a> web site.&nbsp; This creates a globally cached network of servers that are much closer to your end users than your single data center.&nbsp; <\/p>\n<p>The next step is you need to re-point your DNS entry in your URL provider (I use <a href=\"http:\/\/www.godaddy.com\">www.godaddy.com<\/a>) to the CDN end point instead of your existing web site (It took about 90 minutes for the DNS to re-propagate \u2013 until then I saw a 404 page).<\/p>\n<p>Using a speed testing site called <a href=\"https:\/\/www.dotcom-tools.com\/website-speed-test.aspx\">DotCom Monitor<\/a>, I tested the CDN version of the site and the non-CDN version.&nbsp; The results are below.<\/p>\n<p>If you look at locations like Japan, India, United States, France, Poland, etc. they are all now significantly faster.&nbsp; In drilling down into the waterfall chart provided, it shows that just loading the bare home page in India goes from 5.84 seconds to load down to 1.22 seconds.&nbsp; Similarly, from Amsterdam the time it takes to load the bare home page shrinks from 1.15 seconds down to 346 ms.&nbsp; <\/p>\n<h1>Site without CDN<\/h1>\n<p><a href=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/image7.png\"><img width=\"281\" height=\"424\" title=\"image\" style=\"border: 0px currentcolor; border-image: none; display: inline;\" alt=\"image\" src=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/image_thumb7.png\" border=\"0\"><\/a><br \/>\n<a href=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/image8.png\"><img width=\"320\" height=\"397\" title=\"image\" style=\"border: 0px currentcolor; border-image: none; display: inline;\" alt=\"image\" src=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/image_thumb8.png\" border=\"0\"><\/a>\n<\/p>\n<p><\/p>\n<h1>Site Running Through CDN<\/h1>\n<p><a href=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/image9.png\"><img width=\"289\" height=\"433\" title=\"image\" style=\"border: 0px currentcolor; border-image: none; display: inline;\" alt=\"image\" src=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/image_thumb9.png\" border=\"0\"><\/a><br \/>\n<a href=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/image10.png\"><img width=\"314\" height=\"382\" title=\"image\" style=\"border: 0px currentcolor; border-image: none; display: inline;\" alt=\"image\" src=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/image_thumb10.png\" border=\"0\"><\/a><\/p>\n",
+            "excerpt": "<p>This web site runs on WordPress on Microsoft Azure Web Sites.&nbsp; As traffic has been increasing, I have been looking for ways to improve performance.&nbsp; One of the key challenges with a global web site such as this blog is serving requests from around the world.&nbsp; As an experiment, I have migrated the entire web [&hellip;]<\/p>\n",
+            "date": "2014-12-29 21:01:22",
+            "modified": "2014-12-29 21:01:22",
+            "categories": [
+                {
+                    "id": 3,
+                    "slug": "azure",
+                    "title": "Azure",
+                    "description": "",
+                    "parent": 0,
+                    "post_count": 114
+                }
+            ],
+            "tags": [
+            ],
+            "author": {
+                "id": 1,
+                "slug": "cwoodill",
+                "name": "cwoodill",
+                "first_name": "",
+                "last_name": "",
+                "nickname": "cwoodill",
+                "url": "",
+                "description": ""
+            },
+            "comments": [
+            ],
+            "attachments": [
+            ],
+            "comment_count": 0,
+            "comment_status": "open",
+            "custom_fields": {
+            }
+        },
+        {
+            "id": 11631,
+            "type": "post",
+            "slug": "azure-web-sites-performance-analysis-hosting-plans-compared",
+            "url": "http:\/\/wordpressazuresearchintegration.azurewebsites.net\/?p=11631",
+            "status": "publish",
+            "title": "Azure Web Sites Performance Analysis \u2013 Hosting Plans Compared",
+            "title_plain": "Azure Web Sites Performance Analysis \u2013 Hosting Plans Compared",
+            "content": "<div style=\"margin-bottom: 5px\">With the many options in scaling up an Azure Web Site, I wanted to understand the different options and the type of performance I could expect from each option.&nbsp; I created a simple performance test using the Bakery site which is a basic ASP.NET web site template that has a sample store.&nbsp; It features a catalogue with a few items in it that you can then place an order.&nbsp; <\/div>\n<p>The default out of the box implementation uses SQL Compact as its database, which has the database running through the file system.&nbsp; Using only a single user hitting the page, the average page load time is about 300-400 ms.&nbsp; I also tested migrating the database to a proper SQL Azure database and the average load time dropped to 30-50 ms, an almost 10x improvement in performance.&nbsp; <\/p>\n<p>In order to test multiple users hitting the site, I created a performance test that hit the site using the open source tool <a href=\"http:\/\/jmeter.apache.org\/\">JMeter<\/a>.&nbsp; The test was a basic test to see how fast the pages could be retrieved under load.&nbsp;&nbsp; I tested different loads using 1, 2, 4, 8, 12, 20, 50, 100, 200 and 500 concurrent users.&nbsp; Tests were run from within an Azure VM so the latency was very low.<\/p>\n<p>Here are the results using a number of different concurrent threads to test the scalability of each option.&nbsp; The summary of the results can be found here in this slideshare presentation.<\/p>\n<p>&nbsp;<iframe style=\"margin-bottom: 5px; max-width: 100%; border-top: #ccc 1px solid; height: 335px; border-right: #ccc 1px solid; width: 527px; border-bottom: #ccc 1px solid; border-left: #ccc 1px solid\" height=\"355\" marginheight=\"0\" src=\"\/\/www.slideshare.net\/slideshow\/embed_code\/43040711\" frameborder=\"0\" width=\"425\" marginwidth=\"0\" scrolling=\"no\" allowfullscreen> <\/iframe><\/p>\n<h2>Free<\/h2>\n<p>Free worked quite well running up to 20 concurrent users.&nbsp; However, at 50 threads, the response time doubled and within a couple minutes the Data Out quota was reached and the entire site was disabled!<\/p>\n<p><strong>Free is really only useful for testing \u2013 with only 165 MB per day in the Data Out quota, you\u2019re going to run out even with the most basic web site under any reasonable load.<\/strong><\/p>\n<h2>Shared<\/h2>\n<p>Using the SQL Compact edition, Shared still scaled up really well.&nbsp; Even at 50 concurrent users, the average response time was only 400 ms.&nbsp; However, at 100 threads we started to see slow down where response time increased to an average of 1290 ms.&nbsp; At 200 threads, the slow down was even more pronounced at 1755 ms.<\/p>\n<p>If you look at the Azure dashboard, you can see as the tests run there were 8369 requests in one minute and it barely broke a sweat!<\/p>\n<p><a href=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/image2.png\"><img title=\"image\" style=\"border-left-width: 0px; border-right-width: 0px; border-bottom-width: 0px; display: inline; border-top-width: 0px\" border=\"0\" alt=\"image\" src=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/image_thumb2.png\" width=\"536\" height=\"150\"><\/a> <\/p>\n<p>Running using Azure SQL improved scalability even further.&nbsp;&nbsp; It could easily handle 100 concurrent users without any noticeable change in performance.&nbsp; <\/p>\n<p>However, one of the key limitations for Shared is the quota limits that are imposed on your site.&nbsp; While Shared can handle spikes in traffic quite nicely, you need to be careful about exceeding the quotas.&nbsp; <\/p>\n<p><strong>Running a simple ASP.NET page using the SQL Compact database, I was able to exceed my CPU quota in less than 5 minutes running at 50 concurrent users and then my site was disabled.&nbsp; Running the more optimized SQL Azure database, I could do the same at 200 concurrent users.<\/strong><\/p>\n<p>The key quota limit is CPU time \u2013 it resets every 5 minutes and limits your site to \u201c2.5 CPU minutes\u201d.&nbsp; Essentially, if you have too much traffic in a 5 minute period your site is disabled.&nbsp; <\/p>\n<p><a href=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/image3.png\"><img title=\"image\" style=\"border-left-width: 0px; border-right-width: 0px; border-bottom-width: 0px; display: inline; border-top-width: 0px\" border=\"0\" alt=\"image\" src=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/image_thumb3.png\" width=\"540\" height=\"342\"><\/a> <\/p>\n<p>Shared is still the best option of all the tests for handling short spikes in performance as long as your site doesn\u2019t exceed your usage quota.<\/p>\n<h2>Basic Small<\/h2>\n<p>Basic has 3 configurations \u2013 Small, Medium and Large.&nbsp; We tested each of these configurations under load.<\/p>\n<p>Basic Small was significantly slower performance than Shared in all scenarios.&nbsp; If you look at the graph from the Azure monitor, you can see the difference in requests being handled from the time the site was in Shared vs. the time it is in Basic Small.<\/p>\n<p><a href=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/image4.png\"><img title=\"image\" style=\"border-left-width: 0px; border-right-width: 0px; border-bottom-width: 0px; display: inline; border-top-width: 0px\" border=\"0\" alt=\"image\" src=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/image_thumb4.png\" width=\"536\" height=\"156\"><\/a> <\/p>\n<p>In Shared, we peaked at 8300+ requests per minute even running under SQL Compact, while in Basic Small the site was barely managing 250 requests per minute.&nbsp; By the time we load up to 50 users, the Basic Small site started generating errors from the SQL Compact database because it couldn\u2019t handle the requests fast enough.<\/p>\n<p>Running using a SQL Azure database, Basic Small works better but still suffers from scalability issues.&nbsp; At 20 concurrent users, the average load time was 93 ms compared to an unloaded 30 ms.&nbsp; At 50, 100 and 200 concurrent users, the performance got progressively worse.<\/p>\n<h2>Basic Medium<\/h2>\n<p>Basic Medium fairs much better than Basic Small \u2013 it consistently delivers reasonably good results even at higher loads.&nbsp; As you can see by the following graph, Basic Medium peaks at significantly higher requests per minute than Basic Small under all test scenarios.<\/p>\n<p><a href=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/image5.png\"><img title=\"image\" style=\"border-left-width: 0px; border-right-width: 0px; border-bottom-width: 0px; display: inline; border-top-width: 0px\" border=\"0\" alt=\"image\" src=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/image_thumb5.png\" width=\"536\" height=\"152\"><\/a> <\/p>\n<p>As a result, Basic Medium performance is stable at around 400-450 ms when running the SQL Compact database to load on average until 20 concurrent users and then starts to increase slowly from there.&nbsp; When running SQL Azure, We could scale to 50 concurrent users without a significant decrease in performance.&nbsp; <\/p>\n<h2>Basic Large<\/h2>\n<p>Basic Large is the first instance that we tested that had faster average load times than Shared and Free.&nbsp; It also scales much better than Basic Small or Medium, where it stays at an average of 300 ms even with 20 concurrent users running under our SQL Compact database.&nbsp; Running under SQL Azure, Basic Large performed well up to 20 concurrent users and then performance slowly degraded as we increased to 50, 100, 200 and 500 concurrent users.<\/p>\n<h2>Standard Small<\/h2>\n<p>Switching to Standard provides you the same options as basic in terms of size of VM but with the additional ability to scale out the number of instances from 3 to 10 and the ability to auto scale up when your instance becomes bogged down.&nbsp; <\/p>\n<p>The performance of Standard Small is a little bit better than Basic Small.&nbsp; In my test with Basic Small, we started seeing errors with 50 concurrent users.&nbsp; With Standard Small, the performance is very slow but manages to get through the test.&nbsp; However, at 100 concurrent users, Standard Small also fails by generating errors.<\/p>\n<h2>Standard Medium and Standard Large<\/h2>\n<p>Standard Medium did similar performance to Basic Medium.&nbsp; Standard Large is rock solid with the best scalability of all the options.&nbsp; At 200 concurrent users, the instance is still consistently delivering.&nbsp; Performance is about the same as Basic Large. <\/p>\n<h2>Shared X 3<\/h2>\n<p>Using Shared, you can increase the number of instances up to 10.&nbsp; What happens if you scale up to 3 instances \u2013 do you get 3x the performance?<\/p>\n<p>Running multiple instances meant that only SQL Azure was supported \u2013 SQL Compact won\u2019t work in this scenario at all because it is local on a file system.&nbsp; Running Shared on 3 instances, the speed to load a page was stable at 30 ms, even when running with 200 concurrent users!<\/p>\n<p><strong>At 500 concurrent users, I was able to again exceed by quota after a couple minutes of running at that speed.&nbsp; However, in that time I was able to generate almost 50,000 page views running on three shared instances.<\/strong><\/p>\n<h2>Basic Medium X 3 and Standard Medium x 3<\/h2>\n<p>Basic Medium or Standard Medium running on 3 instances can handle a LOT of traffic.&nbsp; Both were rock solid running my test up to 50 concurrent users with an average load time of 33 ms.&nbsp; With 100 and 200 concurrent users, there was degraded performance but it was reasonable \u2013 about 50-60 ms.&nbsp; Even with 500 concurrent users, performance was still a respectable 124 ms.&nbsp; <\/p>\n<p>Standard Medium running on 3 instances performed at about the same rate as Basic Medium.&nbsp; <\/p>\n<p><strong>Running 3 Basic Medium\u2019s is only slightly more expensive than a single Standard large, but the performance is significantly better.<\/strong>&nbsp; At 500 concurrent users, the cluster of 3 Basic Medium\u2019s was serving pages at 124 ms while at the same load, a Standard Large was taking 620 ms to serve a page.<\/p>\n<h2>Standard Large X 3<\/h2>\n<p>Standard large running on 3 instances is massive.&nbsp; It ran easily with 500 concurrent users with barely any decrease in performance!&nbsp; <\/p>\n<p><a href=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/image6.png\"><img title=\"image\" style=\"border-left-width: 0px; border-right-width: 0px; border-bottom-width: 0px; display: inline; border-top-width: 0px\" border=\"0\" alt=\"image\" src=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/image_thumb6.png\" width=\"536\" height=\"147\"><\/a> <\/p>\n<p><strong>As you can see by the graph, we peaked at almost 40K page views per minute!&nbsp; <\/strong><\/p>\n<h2>Key Conclusions<\/h2>\n<p>In analyzing the performance of all the various hosting plans, here are my key conclusions:<\/p>\n<ul>\n<li>Underlying baseline performance makes a big difference in scalability.&nbsp; Optimizing your page rendering time can allow you to reduce hosting costs by allowing you to run under smaller or fewer instances.\n<li>The best performing and most economical hosting plan is Shared.&nbsp; However, with imposed quotas, you have to be careful not to exceed your limits or your site is disabled.\n<li>Azure SQL runs very fast and scales well.&nbsp; Even with 500 concurrent users, Azure SQL was never a noticeable bottleneck.\n<li>Scaling out shared instances also scales out quota limits \u2013 3 Shared instances @ $30 \/ month might be a better bet than 1 Basic Small at $60 \/ month.\n<li>Basic \/ Standard Small are poor scalability choices \u2013 the potential cost savings compared with Medium is eroded quickly by degradation in performance under load.\n<li>Scaling out (e.g. adding multiple instances) is generally more reliable, higher performing and cheaper than scaling up.&nbsp; For example, running 3 Basic Mediums provided superior performance to 1 Standard Large and cost is comparable.&nbsp;\n<li>Autoscale is only available with Standard and only works horizontally \u2013 e.g. you cannot automatically scale up from a Small to a Medium to a Large.<\/li>\n<\/ul>\n<p>Azure Web Sites as a platform is an incredible option especially for high volume web sites.&nbsp; It scales well and the various options for hosting plans mean you can can pay as little as $10 \/ month for your web site.&nbsp; As you need more capacity, changing the configuration can be done at any time and you pay only for the capacity you are using.&nbsp;&nbsp;&nbsp; <\/p>\n",
+            "excerpt": "<p>With the many options in scaling up an Azure Web Site, I wanted to understand the different options and the type of performance I could expect from each option.&nbsp; I created a simple performance test using the Bakery site which is a basic ASP.NET web site template that has a sample store.&nbsp; It features a [&hellip;]<\/p>\n",
+            "date": "2014-12-27 16:48:55",
+            "modified": "2014-12-27 16:48:55",
+            "categories": [
+                {
+                    "id": 3,
+                    "slug": "azure",
+                    "title": "Azure",
+                    "description": "",
+                    "parent": 0,
+                    "post_count": 114
+                }
+            ],
+            "tags": [
+                {
+                    "id": 9,
+                    "slug": "azure",
+                    "title": "Azure",
+                    "description": "",
+                    "post_count": 4
+                },
+                {
+                    "id": 10,
+                    "slug": "azure-web-sites",
+                    "title": "Azure Web Sites",
+                    "description": "",
+                    "post_count": 4
+                },
+                {
+                    "id": 14,
+                    "slug": "microsoft",
+                    "title": "Microsoft",
+                    "description": "",
+                    "post_count": 4
+                },
+                {
+                    "id": 16,
+                    "slug": "performance-testing",
+                    "title": "Performance Testing",
+                    "description": "",
+                    "post_count": 0
+                },
+                {
+                    "id": 17,
+                    "slug": "sql",
+                    "title": "SQL",
+                    "description": "",
+                    "post_count": 2
+                }
+            ],
+            "author": {
+                "id": 1,
+                "slug": "cwoodill",
+                "name": "cwoodill",
+                "first_name": "",
+                "last_name": "",
+                "nickname": "cwoodill",
+                "url": "",
+                "description": ""
+            },
+            "comments": [
+            ],
+            "attachments": [
+            ],
+            "comment_count": 0,
+            "comment_status": "open",
+            "custom_fields": {
+            }
+        },
+        {
+            "id": 11501,
+            "type": "post",
+            "slug": "top-10-predictions-for-office-365-sharepoint-in-2015",
+            "url": "http:\/\/wordpressazuresearchintegration.azurewebsites.net\/?p=11501",
+            "status": "publish",
+            "title": "Top 10 Predictions for Office 365 \/ SharePoint in 2015",
+            "title_plain": "Top 10 Predictions for Office 365 \/ SharePoint in 2015",
+            "content": "<p>In reviewing the major changes, rumors and announcements from Microsoft in 2014, here are my top 10 predictions for Office 365 as we move into 2015.<\/p>\n<h2>10. New Version of SharePoint On Premise<\/h2>\n<p><a href=\"http:\/\/i2.wp.com\/blogs.perficient.com\/microsoft\/files\/2014\/03\/sp-2015.png\"><img alt=\"sp 2015\" src=\"http:\/\/i2.wp.com\/blogs.perficient.com\/microsoft\/files\/2014\/03\/sp-2015-300x68.png?resize=300%2C68\" width=\"300\" height=\"68\"><\/a><\/p>\n<p>SharePoint on premise hasn\u2019t been changed much since its release in 2013 while Office 365 has incrementally evolved as part of their \u201ccloud first\u201d strategy.&nbsp; It is <a href=\"http:\/\/www.zdnet.com\/article\/microsoft-users-not-happy-over-quiet-sharepoint-online-feature-cuts\/\">expected<\/a> that the next version of SharePoint will be announced at the <a href=\"http:\/\/ignite.microsoft.com\/\">Ignite conference<\/a> coming up in May, 2015.<\/p>\n<p>Given the number of features in Office 365 that are now cloud only, it\u2019s not clear what will still make it in the next version of SharePoint on premise.&nbsp; <\/p>\n<h2>9. Office 365 Takes Over from SharePoint as the \u201cPortal\u201d<\/h2>\n<p>As the various services have evolved within Office 365, SharePoint as the core \u201cportal\u201d experience has been pushed back in favor of the Office 365 experience.&nbsp;&nbsp; In 2014, we saw the introduction of <a href=\"http:\/\/www.microsofttrends.com\/2014\/09\/04\/custom-brand-your-office-365-experience\/\">branding for Office 365<\/a> and the introduction of the <a href=\"http:\/\/www.microsofttrends.com\/2014\/10\/17\/microsofts-new-app-launcher-will-provide-an-improved-office-365-navigation-experience\/\">App Launcher<\/a> as examples of Microsoft\u2019s go forward strategy to integrate the various portal layers that have evolved in silos into an Office 365 integrated experience.<\/p>\n<p><img alt=\"app launcher 1\" src=\"http:\/\/officeblogswest.blob.core.windows.net\/wp-content\/2014\/10\/app-launcher-1.png\"><\/p>\n<h2>8. SharePoint becomes a Back-End Document Repository For Custom Applications<\/h2>\n<p>With the introduction of the Office 365 APIs, the new Delve APIs and the evolution of the CSOM based SharePoint APIs, Microsoft is trying to position Office 365 and its various repositories (documents, email, conversations, etc.) to be the backend for custom web and mobile experiences.&nbsp; <\/p>\n<p>With these new APIs, we no longer need to be in the business of building web parts, server side code, and understanding the nuances of SharePoint development \u2013 I just see SharePoint, Exchange, Lync, Yammer, etc. as repositories for me to code against for uploading content, searching for news, etc.&nbsp; This means that I can build applications using my own tools, my own deployment vehicle and my own user experience.&nbsp; <\/p>\n<h2>7. Better Integration of Azure and Office 365<\/h2>\n<p>Azure and Office 365 have evolved in a somewhat isolated fashion, with Azure focused on general cloud hosting and Office 365 focused on collaboration.&nbsp; However, there is a lot of potential with integrating the new services together and a huge competitive differentiator for Microsoft.<\/p>\n<p>Imagine being able to use Azure ML against Office 365 repositories, imagine being able to automate SharePoint tasks using Azure Batch, and imagine being able to communicate updates from your Hadoop data processing through Office 365 portals.&nbsp; There are lots of possibilities and while these are all possible using a bunch of custom coding, expect these types of scenarios to get increasingly easier as Microsoft evolves both services.<\/p>\n<h2>6. Increasing Isolation of Branding<\/h2>\n<p>Microsoft has already <a href=\"http:\/\/www.microsofttrends.com\/2014\/11\/26\/custom-master-pages-custom-site-templates-and-sandboxed-solutions-are-not-recommended-for-office-365-sites\/\">recommended against custom branding<\/a> of SharePoint in Office 365.&nbsp; Expect this to continue as Microsoft takes further control of the out of the box Office 365 user experience.&nbsp; <\/p>\n<p><a href=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/11\/image1.png\"><img title=\"image\" border=\"0\" alt=\"image\" src=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/11\/image_thumb1.png\" width=\"536\" height=\"302\"><\/a><\/p>\n<h2>5. New Fit for Purpose Apps instead of a Single Portal<\/h2>\n<p>Microsoft released the new <a href=\"http:\/\/www.microsofttrends.com\/2014\/11\/18\/gain-youtube-for-the-enterprise-with-new-office-365-video\/\">Office 365 Video Portal<\/a>, a specifically designed portal for videos.&nbsp; In the past, this would have been a web part that fit within the core SharePoint portal user experience but this is clearly limiting the ability for Microsoft to compete with other fit for purpose experiences.&nbsp;&nbsp; <\/p>\n<p>Expect more of these types of fit for purpose \u201capps\u201d to take over more and more of the core portal experience provided currently by SharePoint.<\/p>\n<h2>4. Microsoft Plays Well with Others<\/h2>\n<p>Do you remember the days when the only way to access SharePoint was on a Windows Phone?&nbsp; In 2014, Microsoft dramatically pivoted and started releasing first class applications on IOS and Android.&nbsp; Expect this to continue in 2015 as Microsoft has clearly moved to a more open model and recognition that they can no longer own the entire platform and must share with other players.<\/p>\n<p><a href=\"http:\/\/officeblogswest.blob.core.windows.net\/wp-content\/2014\/03\/IMAGE-01_ExcelHero_iPad_Slvr.png\"><img alt=\"Excel on iPad\" src=\"http:\/\/officeblogswest.blob.core.windows.net\/wp-content\/2014\/03\/IMAGE-01_ExcelHero_iPad_Slvr.png\" width=\"600\" height=\"426\"><\/a><\/p>\n<h2>&nbsp;<\/h2>\n<p>In a similar way, Microsoft has also been integrating on the backend with Salesforce and <a href=\"http:\/\/www.microsofttrends.com\/2014\/11\/04\/if-you-cant-beat-em-join-em-microsoft-office-and-dropbox-to-work-together\/\">Dropbox<\/a>.&nbsp; Expect more integration with other SAAS providers as Microsoft attempts to be the core integrator of all these disparate services into a unified portal hub.<\/p>\n<p><img src=\"http:\/\/mscorpnews.blob.core.windows.net\/ncmedia\/2014\/11\/Edit-Office-files-from-the-Dropbox-mobile-app1.png\" width=\"493\" height=\"374\"><\/p>\n<h2>3. Improvements to Cloud File Storage<\/h2>\n<p><img src=\"data:image\/jpeg;base64,\/9j\/4AAQSkZJRgABAQAAAQABAAD\/2wCEAAkGBxQSEhUUEhQWFBUVGR4bGBcYFxkbGxggHBseGBwdGR4YHykgGxonHhUeIjIiJSkrLi4vGR8\/ODMsNygtLywBCgoKDg0OGxAQGy4kHyQsLCw0ODQ0NCwsNCwvLDQ0LC0sNDQsLCwsLCwsLCwsLCwsLCwsLCw0LCwsLCwsLCwsLP\/AABEIAHABHwMBEQACEQEDEQH\/xAAcAAEAAgIDAQAAAAAAAAAAAAAABQYEBwECAwj\/xABJEAABAwIEAgYECgYHCQAAAAABAAIDBBEFEiExBkEHEyJRYXEygZGhFBcjQlJicpKxshUlNXOC0jNTg7PB4fAkNDZDVHTCw9H\/xAAaAQEAAwEBAQAAAAAAAAAAAAAAAgMEBQEG\/8QAOBEAAgIBAgMFBQcEAQUAAAAAAAECAxEEIRIxQQUTUWFxFCIzgfAVMjSRobHRQkTB8VIjJHKC4f\/aAAwDAQACEQMRAD8A3igCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCA4JQEfimNQUwBnlZGDtmOp8huVZXVOx4gskJTjHmyMpeOqCQ5RUsBO2a7R7XaK6eivisuP+SEb65cmWFr72tYg7Hv8AJZS47oAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAICicS9JcFK8xxMNRI02dZwawEbgusdfIH1Lo6fs2y1cUnhfXQy26uMHjmyIb0vAxvvTFktjkAkD2E8sxytIHPbkr32S+JJSyvTH+Sv25b4RrkR1FbM5wbJUSu9ItaT5X0s1vcDZdXNVEUspIwvjseeZ7V\/DNXA0vlppWtG7stwPE5b2HibLyGppm+GMl9fkJUTistFg6NuLX0szIHuLoJSG2J0jcTYFvc0k6j1rJr9IrIOcfvL9S\/TXuEuF8mbwavnjqnZAEB41dUyJjpJHBjGi7nHYAL2MXJ4jzPG0lllAn6S3SyFlBSSVNt3kloF9tA02B+sWrprs3hjm6fCZPasvFccnU9I88Dh8OoJIWE2ztJPuc2xPhmv4FPs6Fi\/wClYm\/Ae1Sj9+OC9YVicdTGJYXh7DzH4HuIXNsrlXLhlzNUZKSyjNUSQQBAEAQHDivGDWg6T53PkZFhz5ercWksle7YkC4bCbXsfeuv9mwUU5WYz4pL95IyLUttpRbwd\/jSfHrVYfPC3vuf\/Yxg968+y1L4dif15Nnj1bT96LRcOHeJqetaTA+5HpMOjm+Y7vHZYb9NZS8TX8Giu2Ni90mVQWBAVHiPGq2Ktp4oKfrIJMud+Vxtd5D7uGjMrbO13vzW2immVUpTliS5flt65ZRZOamopbFuWIvCAIAgCAIAgCAIAgOCUBXePsTdT0M0jCQ4gNaRyLzluPbutOjrVl8YvkU3z4K2z55GgX1RxCa4VwYVU+WR2SKNpkmd9FjdTbxO3hdZtTd3UMrdvZF1FXHLfkjLxfi+V\/ydKTS0zTZkcRyG3e9zdS47n\/HdQq0cI+9Z70vMlZqG9obIwKDiSrhcHR1Et\/rPc5p82uJCtnpqprDivyx+xGN04vmTNViOG1FpqiKZszhaSGDKI3HnIC61s3cD7d1mjVqa\/cg049G+foXOymXvSTz5Gx+HukOkqXiO74nnRolAs4+Dmki\/vXKu7PurXE8NeRsr1Nc3guTVhNJygNXdJMz6utp8OjOVps6Q+JubkfVY0kd5cO5dfQKNVMr39f7f6GHUt2TVS9TYmEYbHTRNiiaGMbsB+J7ye9cuyyVkuKXM2RiorCPeqp2yNLHtDmuFnNIBBHcQVBNppok1lYZrHhiM4bi8lECTDOLsB1sbFzfWAC2\/OwXY1D9o0qt6r\/RhqXdXcHRlwxfiuKnq4qV7H5pW5usu0MYO16VyCPQPJc+vSysqlaum3mapWqMuFkHW9JbRd1PSVE8Td5g1zWabkHKdB42WqHZz5Tmk\/DqUy1S6JssnCvE0NfGXxZgWmzmOFnNvqNrgg94PIrLqdNOiWJl1VsbFlDifiaChZnndq6+VjbFzrdwPLXcm2q8o01l7xAW2xrWZFX+M3LZ01DUxREi0hGmvPVoHsJWz7NztGxN+H0zP7XjdxaReMOrmTxtlicHseLtcOf8AmudODg3GWzRrjJSWUUDoi\/pcQ\/et\/NKup2n92v0\/gyaTnP1NkPZcWIuDy7\/O65CNhqXjnC\/0XVQVtKAxrnWewaC+5aLfNc2+nItC7eju9pqlTZvjl9ePn4HPvgqZqceRsDiHiOOkpxUOa57HFtg21+0Lg9ogLmU6aVtnd5w\/4NllqhHiZB410iwwENZDLO\/IHvay3yYcM1nHk63q8Voq7OnPdtJbr1K56iMXhElWcYRxTUsJjkLqtrXNIy2bmNu1c358gVTDSSnCU8r3ScroqSj4nccVxiv+AuY9shF2vOXI7s5haxvci\/LkU9ll3PfJrA76PH3fUsTispaV+h4pZNWS0jI3l0Qu6Ts5Btpvfc22WmellCpWyfPoVRtUpuKXIw+I+OoKWTqWsfUT\/wBXELkaXAPjbkAT4KyjQztjxtpR8yNmojB8PNmHhnSPG6VsVVBLSPf6PWjsnkPSAI10va3irLOzpKLlCSkl4EYalN4ksF5C55pOUAQBAEBGcR4qKWnkncM3VtuBtc7Ae0hWU1O2xQXUhZPgi5Hz7jXEFTVuJnlc76gJDB5NGnrIuvqKtPXUsRXz6nGsulP7zPbhvA\/hJke+QQwQgOllIvYHZrRzebG3+gY36ju8KKzJ8ke1U8eW9kjOquIqeOCWnoqZzGzNDXzSSXkcAb+iBZo30uq46exzjZbLLXTGxZK6EU4wXMrC2GUIAgBF0HLc+h+CMabU0kTi9rpQwdYARcHbtDcXtzXy2rpdVsljbOx3KZqcV4lhCzFprFrw3iPtfOjs3x+TBHuBXW56DbxMWcan5GzQVyTacoDWHFPax+jDdw1t\/UZHflXX0+2hm39cv8mK38RH0PDpEoG1GMUcLvRexgd4jrJCR6wLetS0U3XpbJLo\/wDBHUQU7opm0Iog0BrQA0aADYAbC3cuK8t5ZuW2yNbcHQCDGqyKMAMLSbch6Lh73FdfUtz0kJPmY6Uo3ySImrx2mGMTTVpOSHsRDLmF2bXA7iXHzKvjRa9IoVc3uyt2R79ufTkWes6ScMlY6OR73MeC1wMbrEHRY49m6qD4kuXmXvU1NYZg9CdXeKpia7MyORrmn7YI9V+rBt3kqztaOJRl1a\/b\/ZHRt8LXTJz0Rf02IfvW\/mlXvaf3a\/T+BpOc\/U2UFyTYa96Z5AKKNp3dKLeoEn3LpdlJu1+jMet+H8zp0jsLcHiB3HUg+xS0DT1T+ZLU\/B\/Is\/BOFNp6OIN9J7Q97ubnOANz36WHqWPVWuy1tltUOGOCpccj9c4b5t\/vFu0f4W366FF\/xoHfpZonROpq+PR8DwHeIzZ238L3H8ZUezJqSlS+q\/39eQ1axixdC5V+NMjpHVQ1YIusHjcXaPMmwWCFMpWqvrnBplNKHEU3gKB1Lh1TXyDNLK2SbXS4a0uaP4nXPk4dy6GsasvhRHksIzadONbm+b3IDo+4poqNkklU9xqpXEudkJs3kL+Ju4+Y7lp1ulvuko1r3VhFWmuhFNvmzM484yw+tpHRsc4yggx3YRY3sdTsLE+xV6PQ6ii1Sa2Jai6ucMdS\/wDA9YZqCme43Jjbc99tP8FzNVFRukl4muptwWSdVBYEAQBAV7jzC3VNFNEwXfYOaPpFpzW9dlp0dqqujJlV8HODSPngj\/W1u8a9y+pOJ5Fwt+ozk\/6v5X2DL\/4LA99b73\/Hb6\/M1\/223iU8roGMLwBAEAQGfgWIvpqiKaMkOa4XA+cCe0094I0t5dyrurjZW4y8CyqbjJNH0wF8id01x0o4TLHJDiNP6UFus8gbhxty1c13geVl1OzrYuLon15GPUwkmrI9Cy8N8YU1WwObI1kmmaNzgHNPdr6Q03CyX6S2mWGi6u+M1lMycb4npqVpdLKy4GjGuBefAAa+vZRq01trxGJKd0ILLZTuAKSSsq5cTmbla7swjfT0bjwAFr8yTyW7WzjTWtPHpuzPRFzm7ZDi79vUH2G\/mlTTfgrPX+Bb8ePobJXJNjNccP8A7fq\/sH8GLrXfgoev8mKv8RIwoZ2YfjU4qABFUi7Xu2GYgg+WYEE8tFOUZX6NOHOPM8TVd74uTNjv6gMznqgy185yBvnfay5Pv+Zs93yOMIq4ZmGSAtcwkjM0WBLSWnzsQV7ZGcXwz5iLi17prvotr4opq\/rZI47yi2d7W3s6W9sx1XV7RhKUK+FN7fwZNLJJyz4l2xDjCihbd9TEbDZrg8nyDbrnw0t03hRf7GiVsIrLZRqdkmOVrJXMLKKnOl\/nm4JHcSSBe2wFt10Xw6Klwzmcv0MqzqJqX9KJ7pi\/Zx\/eM\/ErN2X8f5Mu1fwmWvAv92g\/dM\/KFjt+JL1ZfHkihcdftnDvNv8AeLpaP8Lb9dDLf8aBeeIsLFVTTQn\/AJjCAe47tPqNiubTZ3U1PwNNkeKLiafp8UkqaKmwzaU1JidzsxlnXNuTc5H9kV3nVGu6Wp\/p4U\/m\/wDX6o56m5QVXXP6G3a\/CmvpJKZnZa6F0TfqgsLR+K4NdzjYrX0ef1OhKPu8PkUTosxOJjH0dQGMmjkdlDwO1fdoJ3cHZtO4hdLtKqbkrYbppGTSyilwS5oveJ1VLTszzGKMeIbc\/ZG5PkubXGybxHLNb4UtyQp7WGUWFtBa3jsoPPUkj1Xh6EAQBALICt41wTR1Ty+SGzyblzCWF32su5WmrWXVLEXt+ZTOiuby0dKPgmkihmhY1\/VzgZwXudqNi3Neztd\/AL2ettnOM2915BUQUXHxKDWdE1S11opopG8i67Hesai\/kfUF1Idq1te8mv1Mc9E8+6zH+Kqt+lD94\/yqX2pT5kfYp+KHxVVv0ofvH+VPtSnzPPYp+KHxVVv0ofvH+VPtSnzPfYp+KHxVVv0ofvH+VPtSnzHsU\/FEtwz0XyRzslqnsLI3BwYy5LiCCLkgWbcX9So1HacXDhrW78SyrRtSzJm1mrjHQOCEBUsW6OqGdxcYurJ\/qzlB\/h9Fba+0L4LGcoolpq5PODphvRtQQkHqzIRye4kfdGi9n2jfLbODxaWtb4LgxoAAAsBsBsFhNBEVvDsE1TFVPa4zRCzCHEAAFx22PpFWw1E41utPZkHXFy4uqJdVEyIpeHoI6l9U0O66QWccxsduWw2CtlqJyrVbeyK1XFScurPTHMCgrGZKiMPA2Ozm33ykaheU3TplmDwz2dcZrEisR9FNAHXyyHwz294F1tfauofVFPslfn+ZcMOw+OnjbFCxrGN2aNhfU+ZJN1gnZKxuUnlmiMUlhFZk6NaBznOdG+7iST1r+Zudj4rWu0b0sZX5Ioelrby0e9F0f0ERuIA7W\/bc5w9jivJ9oaiS3l+R7HTVR3SLRFE1oDWgNA0AAsB5AbLG992XmBj+CxVkXVTglhINg4tNxtqFZVdKqXFB7kJwU1hmbSwhjGsbswBo8gLBQbbeX1JLYi8S4dgnqIqiRpMkPoEOIAscwuBode9W16iyEHCL2fMi64ykpPmiYKoZMgaXhWmjqnVTGETOvc5jbtb2bsDp+K0S1Vsq+7b2KlTFS41zJ4BUFpXOIuC6Ssdnljs\/m9hyk22zW0PrWmjWW0rhi9imyiE92R2GdGOHwuDurLyOTndn1gWBV1naV81jOCK01ec8\/mXRrQNgsBoOUAQBAEAQBAEAQBAEAQBAEAQFa40x19JFH1LQ+aeRsUYdsHO2J8Bb8Fp0tCtk+Lkll\/IpuscVtzZncP09UwO+FzRyuJGUsZkDRbUHXXXmoWyqfw0167lkFJLclrqkkLoBdAdZHWBPciWXgFAwnjiuqYmzQ4ZnY7YipGtjY7xjmulZoqK5cMrd\/T\/6ZldOSzGOSwcK8TsrQ8ZHQyxG0kT92k32NtRoeXJZdTpnS1vlPkyyq3jT6NFhus5aLoBdMgxMSe8RSGFodIGnI12xdbQHwuvYKLklLkeSzjY8cBlndAx1UxrJiO21uw109ynaoKb7vkeQ4se9zJHMqyQugF0AugF0AugF0BygCAIAgCAIAgCAIAgCAIAgCAIAgNZdJNJU9fSHrmdW+rjELer1ifyc437QB1touroJV8E1h54XnzMmoU+KO\/UmsXxiooKZvXuZVVMsoZCGsyNJdYAEXOx8eYWeumu+z3VwxSy+pZOcq477vodDhOLZes+HRdZa\/U9R2L92fNfw9Fe97peXA8eOdxw24zncycD4ndU0M8pb1c8AkbI3cNexpOngo3aZV3RjzTxj0Yrt4oN9URPDlfiOIQRyxyxwNbo5zo8xmcD2rW0Ywej33urr69PRNxabf7fyQrnZbFSL9P6J8j+C50eaNRqjgDjmlo8PZFKX52FxIawkauLhrtzXa1uittvco4xt18jFTfCFeGWLo9aJpKquzMvUubaNjw4xgbZyNnHu5W5rJrXwRhT\/AMc7+PoWUJScrPEkeDsXlqJa1spBEM5YywAs23O26q1NMa4wceqyTrm5OWfE4x\/F5YsQoIGECOfresBGpyNBbY8tUpphOiyb5rGPmJzcZxXiYeKYnVVNdJR0srKZsMYe+RzOsc4u5BtwABcc1OuuqulW2Liy3tyIucpWcMXgkL1dNRVTp5mTSxskfHI2PLo2O7czb6nODz2IVWKrboqMcJ4T38+hNuUYNvcwv09P+hvheYdd1We9ha97bdyt7iHtfddMke8fc8fU8KBuJVsLJmVEdK0tGRvVZ3PsPSecwDAT80A2C9n7NTNxceL54\/I8i7JxzyM7gniF88Mwqg1k1M8slI0BAF8+u2gP3b87CGr06rmu73Ukmv4PabXKL4uaI3DarEMSaZ4J2UdPmIiBi6x7wDbM67hYH\/BWzjp9O+Cacpdd8L9iMJTs95bIy8D4jmaaqGsDTNSN6wuYCBKzLmBAOx094Vd2ng+CdX3Zbb9H6koWNZU+aMHBXYlWwtqmVcUAfcshEOdtr2Ac\/MDfv0O3qVlvs1E3U4N465Iw7yceLJn8T4zUCqp6GncyOSZhe+VwuGgXFmN+c45Tz5DvuK6KK+7lbNNpbYPZ2S4lCPNkpgFDVxOeKmpbUtIGRwi6twOtwQCRa1tbqm+dUsOuPD88othGS5vJPKgmEAQBAEAQBAEAQBAEAQBAEAQBAUfpK9PDf++i\/FdDQcrf\/Bme\/nH1PPpGf1VRh9S6\/VQzOEh+jny2cfAZSvdB78LK1za2I6h8MoyfJF0M7cufMMls2a4y2te99rW5rm4fLG5pyuZr\/hX5SnxWpAIjmdJk+sGscMw8Dm9y6uo92ymt81j9zLVvGcl1\/gsHRoP1bT\/ZP4lZtf8AiJepbp\/hosdR6J8j+CyrmXMpvRCf1XDrzk\/OSt3aa\/7l4Xh+xn02FX+ZhYO6N2OSmlymMQfLFlshffTbQnb1gqy3i9ijx887Z8CEMd+8csGTwBKG1eJRE9vr89vAg\/5e0KGs3rqkuWMEqX78l5nlxJVtfjWHRtILoxKXgcs7DlHnZhNvEKVEGtHa31xj5MWSTujH1JfiLhSKreJo5HwVMegmjOoO4DwCMw12uNDvZZ6dVOqPBJcUX0f7onOpTeVsyEw3GJ5qHE4agtkkpo5Wda3Z\/wAm\/u+cMpv9oevTOmELqpw2Umnjw3KlOTrmpdM\/scH\/AIc\/sB+Ze\/3\/AP7D+2+RcOGR\/slP+6Z+ULn3\/El6s0Q+6il4RTOl\/TkbBd0mZrR3l0cgA966NslH2eT6fyjPBZdiPDgXh+GrpGPbVVbXt7L2MqHtDHDllHojmB4r3WaidVrTjHxzjmhRBSgsN7FmwbhqnpZZZeukkeWASddJns3UguzagWadzsCsd2pstiotJLO2FgthVGLbzkgMewJ+Fxvq6Cd0cbSHPp3dqN1yB2e4+025iy1UahamSqujl42fX5lM63UuOt7eBYMUwWDE4onSXjlDGvY5jrSR5tbj6t26X7llqvnppPG6zjyZdKuNqWeZhcIV9RHVz0NRL8I6prXsltZ1jbR\/t8dlZqYVyrjdBcOc7EapSUnCTyXZYTQEAQBAEAQBAEAQBAEAQBAEAQBAReLYNFUmIygkwyCVlnEWc3Y6bjwKsrulXnh6rD9CMoKWM9DKq6VkrHRytD2OFnNOxChGUovMdmetJrDKw3o5otrSll79X1r8l739G9ls+0b+eVnxwslPs0PkWQ4fH1Jha0NjLCzK3QZSLEC22hWTjlxcXUu4VjHQ4wfDY6aJsMQIYzQAkm3Pc6r2yyVknKXM8jFRWEZcguLd6gSKX8V2G84XEjmZH\/8A1bvtPUY+9+hn9mrXL9y0YPg8FKzJBG2Nu5sN\/M7lZbbZ2y4pvLLoQUFhIi8b4PpqqUTSNe2UC2eN7mOtyuWn3q2rV21R4Vy8HuQnVGbz1OaLg6kifC+NhD4C5zDndcl4Ae59z2yQBqV5LV2yTTezx+nIKmKaaPPFuC6aoldM7rWPeAHmOV7M1tr5SpV6yyuPAsY9Ew6Yt5ZnUnD9PFTOpo2BkL2ua4Am7swyuJO97aX8FXK+ydneN7nqqio8K5HP6Ah+C\/BMp6nLky5je17+lvded\/PvO9\/qPe7jw8HQz6SmEbGxs0awBredgBYbquUnJ5fMkljYxMNweKCSaSNpDp3B0l3E3Ivtfbc7Kc7Zzioy6bHkYKLbXUisR4GpJZTNlfHI70nRSOZfzyndX1622EeHOV5rJW6IN8Rl4ZwtS08UkMcdmTAiW5Jc+4IOYk3Ojj7VVZqbLJKcnuuRJVxisYI2Do9omlvZke1hu2N8r3Rj+EmyufaFzT5LPkskVRBEhjnClPVyNlkD2yMbla+N7mOAuTa7T3uPtVdOqsqWI8vNZPZ1Rk8s98B4dp6NrhAyxebucSXOcfEnUqFt87WuLoShXGHImFUTCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgP\/Z\"><\/p>\n<p>One of the key services for Microsoft is OneDrive for Business.&nbsp; However, compared to other services such as DropBox, it is immature and doesn\u2019t provide the same performance.&nbsp; <\/p>\n<p><a href=\"http:\/\/www.microsofttrends.com\/2014\/04\/28\/onedrive-for-business-increases-from-25-gb-to-1-tb\/\">What started as a service with a 25 GB limit for OneDrive for Business is now 1 TB for every user<\/a> \u2013 expect this allocation of storage to continue to increase to unlimited in 2015 (it\u2019s already unlimited for personal users).&nbsp; Similarly, the 2 GB maximum file size was recently increased to 10 GB for OneDrive for Business.&nbsp; One of the other major barriers is the 20,000 limit on files that can be synchronized in OneDrive for Business.<\/p>\n<p>As the demand for larger files and the number of files increases, one of the key challenges with OneDrive for Business is performance \u2013 it\u2019s too slow to synchronize and not reliable enough to be considered rock solid for replacement of your \u201cH Drive\u201d.&nbsp; <a href=\"http:\/\/www.microsofttrends.com\/2014\/09\/11\/onedrive-upload-limit-increased-to-10-gb-and-faster-sync-performance\/\">Microsoft has recognized this and has announced changes to the service to improve performance<\/a> \u2013 expect this to evolve in 2015 as customers demand ever increasing sizes of files, <\/p>\n<h2>2. A Replacement for InfoPath<\/h2>\n<p><a href=\"http:\/\/www.google.ca\/url?sa=i&amp;rct=j&amp;q=&amp;esrc=s&amp;source=images&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=0CAcQjRw&amp;url=http%3A%2F%2Fthe-chronicon.blogspot.com%2F2013%2F04%2Fsign-microsoft-infopath-form-template.html&amp;ei=EJCZVPCsBYS-ggS_2IHgCQ&amp;bvm=bv.82001339,d.eXY&amp;psig=AFQjCNHXADHB0H8nPnC3_IOBRoWt35ePYA&amp;ust=1419436415709643\"><img src=\"https:\/\/encrypted-tbn3.gstatic.com\/images?q=tbn:ANd9GcQQ9vD2JOg4KPEky4EfNWPGSk62cIkXagazVqYVmoudipHbTNAl\" width=\"408\" height=\"152\"><\/a>\n<p>Microsoft has promised a replacement for InfoPath when it <a href=\"http:\/\/www.microsofttrends.com\/2014\/01\/31\/microsoft-is-retiring-infopath\/\">officially retired<\/a> it as a platform for creating electronic forms.&nbsp; A replacement strategy was noticeably absent in last year\u2019s SharePoint conference so expect some further announcements in 2015 around electronic forms and light weight form development within the Office 365 platform.<\/p>\n<h2>1. Retirement of SharePoint as a Public Facing Web Site Content management Platform<\/h2>\n<p><a href=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/sp2010_ferrari1.jpg\"><img title=\"sp2010_ferrari[1]\" border=\"0\" alt=\"sp2010_ferrari[1]\" src=\"http:\/\/www.microsofttrends.com\/wp-content\/uploads\/2014\/12\/sp2010_ferrari1_thumb.jpg\" width=\"540\" height=\"355\"><\/a><\/p>\n<p>SharePoint 2013 can act as a decent (although expensive) public facing web site platform.&nbsp; However, it\u2019s clear that SharePoint cannot keep up with the rapid evolution of the public facing web frameworks, mobile development frameworks and JavaScript libraries continually being updated.&nbsp; The web itself has changed significantly with the move to a more app centric model and lots of different channels to push web content than just a one size fits all web site.&nbsp; In addition, Microsoft has been promoting Azure as a public facing web site hosting platform and is promoting platforms such as WordPress as first class web content management solutions because they are much cheaper and agile to host than SharePoint.<\/p>\n<p>Just recently, <a href=\"http:\/\/www.microsofttrends.com\/2014\/12\/19\/microsoft-officially-drops-public-websites-from-office-365\/\">Office 365 has dropped the free public facing web site feature from its lineup<\/a>.&nbsp; While you can continue to build web sites on the SharePoint 2013 on premise platform, its a very expensive platform compared to many other options on the market and with the evolution of the Office 365 APIs, Microsoft is clearly pushing in the direction of SharePoint as a backend content repository but allowing you to build your user experiences on easier and cheaper platforms such as WordPress or other .NET based WCM platforms.<\/p>\n",
+            "excerpt": "<p>In reviewing the major changes, rumors and announcements from Microsoft in 2014, here are my top 10 predictions for Office 365 as we move into 2015. 10. New Version of SharePoint On Premise SharePoint on premise hasn\u2019t been changed much since its release in 2013 while Office 365 has incrementally evolved as part of their [&hellip;]<\/p>\n",
+            "date": "2014-12-23 11:02:46",
+            "modified": "2014-12-23 11:02:46",
+            "categories": [
+                {
+                    "id": 7,
+                    "slug": "sharepoint",
+                    "title": "SharePoint and Office 365",
+                    "description": "",
+                    "parent": 0,
+                    "post_count": 136
+                }
+            ],
+            "tags": [
+            ],
+            "author": {
+                "id": 1,
+                "slug": "cwoodill",
+                "name": "cwoodill",
+                "first_name": "",
+                "last_name": "",
+                "nickname": "cwoodill",
+                "url": "",
+                "description": ""
+            },
+            "comments": [
+            ],
+            "attachments": [
+            ],
+            "comment_count": 0,
+            "comment_status": "open",
+            "custom_fields": {
+                "post_views_count": [
+                    "3",
+                    "3",
+                    "3"
+                ]
+            }
+        },
+        {
+            "id": 11471,
+            "type": "post",
+            "slug": "2014-recap-of-office-365-changes-and-new-features",
+            "url": "http:\/\/wordpressazuresearchintegration.azurewebsites.net\/?p=11471",
+            "status": "publish",
+            "title": "2014 Recap of Office 365 Changes and New Features",
+            "title_plain": "2014 Recap of Office 365 Changes and New Features",
+            "content": "<p><a href=\"http:\/\/www.google.ca\/url?sa=i&amp;rct=j&amp;q=&amp;esrc=s&amp;source=images&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=0CAcQjRw&amp;url=http%3A%2F%2Fblog.quitecloudy.com%2F2013%2F02%2Fmicrosoft-partner-program-and-office-365.html&amp;ei=MnqZVLn7G8SUNoSSg9AJ&amp;bvm=bv.82001339,d.eXY&amp;psig=AFQjCNGCxNOutIRbZEouCK7L-BokEuspGw&amp;ust=1419430819927300\"><img src=\"https:\/\/encrypted-tbn2.gstatic.com\/images?q=tbn:ANd9GcRsZ-ZdZsTjFAISYJ7IeGOJ2iF9XHcRbRcr-Z-loXk9sghug96t\" width=\"439\" height=\"97\"><\/a>\n<p>As we close out 2014, there has been lots of incremental changes to Office 365 throughout the year.&nbsp; In 2014 alone, we saw the following changes to Office 365 as Microsoft evolved the service:<\/p>\n<ul>\n<li><a href=\"http:\/\/www.microsofttrends.com\/2014\/01\/31\/microsoft-is-retiring-infopath\/\">Retirement of InfoPath<\/a><\/li>\n<li><a href=\"http:\/\/www.microsofttrends.com\/2014\/03\/03\/introducing-the-new-office-graph-and-project-oslo\/\">Launch of Power BI and Delve as new Office 365 services<\/a><\/li>\n<li><a href=\"http:\/\/www.microsofttrends.com\/2014\/06\/19\/microsoft-unveils-its-office-365-public-roadmap-and-first-release-program\/\">Launch of the Office 365 Public Roadmap and First Release Program<\/a><\/li>\n<li><a href=\"http:\/\/www.microsofttrends.com\/2014\/08\/23\/taxonomy-refinement-panel-web-part-and-faceted-navigation-now-available-on-sharepoint-online-for-intranet\/\">Addition of Taxonomy Refinement Panel and Faceted Navigation<\/a><\/li>\n<li><a href=\"http:\/\/www.microsofttrends.com\/2014\/09\/11\/onedrive-upload-limit-increased-to-10-gb-and-faster-sync-performance\/\">Increases in Size Limits for OneDrive and SharePoint<\/a><\/li>\n<li><a href=\"http:\/\/www.microsofttrends.com\/2014\/10\/03\/create-ad-hoc-distribution-groups-with-new-office-365-groups\/\">Introduction of Office 365 Groups<\/a><\/li>\n<li><a href=\"http:\/\/www.microsofttrends.com\/2014\/11\/04\/if-you-cant-beat-em-join-em-microsoft-office-and-dropbox-to-work-together\/\">Integration of Office 365 and Dropbox<\/a><\/li>\n<li><a href=\"http:\/\/www.microsofttrends.com\/2014\/11\/15\/yammer-now-supports-office-365-login\/\">Integration of Yammer and Office 365 Login<\/a><\/li>\n<li><a href=\"http:\/\/www.microsofttrends.com\/2014\/11\/18\/gain-youtube-for-the-enterprise-with-new-office-365-video\/\">Introduction of the Office 365 Video Portal<\/a><\/li>\n<li><a href=\"http:\/\/www.microsofttrends.com\/2014\/11\/11\/lync-becomes-skype-for-business\/\">Rebranding of Lync to Skype for Business<\/a><\/li>\n<li><a href=\"http:\/\/www.microsofttrends.com\/2014\/12\/19\/major-changes-coming-to-power-bi\/\">Major Changes to Power BI<\/a><\/li>\n<li><a href=\"http:\/\/www.microsofttrends.com\/2014\/12\/19\/microsoft-officially-drops-public-websites-from-office-365\/\">Dropping of Public Facing Web Site feature from Office 365<\/a><\/li>\n<li><a href=\"http:\/\/www.microsofttrends.com\/2014\/08\/14\/office-365-apis-push-developers-further-into-externally-hosted-client-side-application-models\/\">Introduction of the Office 365 APIs<\/a><\/li>\n<li><a href=\"http:\/\/www.microsofttrends.com\/2014\/06\/03\/yammer-conversations-now-integrated-with-office-365-and-onedrive-documents\/\">Integration of Yammer and Office 365 through Conversations<\/a><\/li>\n<\/ul>\n<p>These are just some of the changes that have been released in 2014 \u2013 expect 2015 to be full of new features and surprises for the Office 365 service!<\/p>\n",
+            "excerpt": "<p>As we close out 2014, there has been lots of incremental changes to Office 365 throughout the year.&nbsp; In 2014 alone, we saw the following changes to Office 365 as Microsoft evolved the service: Retirement of InfoPath Launch of Power BI and Delve as new Office 365 services Launch of the Office 365 Public Roadmap [&hellip;]<\/p>\n",
+            "date": "2014-12-23 09:22:11",
+            "modified": "2014-12-23 09:22:11",
+            "categories": [
+                {
+                    "id": 7,
+                    "slug": "sharepoint",
+                    "title": "SharePoint and Office 365",
+                    "description": "",
+                    "parent": 0,
+                    "post_count": 136
+                }
+            ],
+            "tags": [
+            ],
+            "author": {
+                "id": 1,
+                "slug": "cwoodill",
+                "name": "cwoodill",
+                "first_name": "",
+                "last_name": "",
+                "nickname": "cwoodill",
+                "url": "",
+                "description": ""
+            },
+            "comments": [
+            ],
+            "attachments": [
+            ],
+            "comment_count": 0,
+            "comment_status": "open",
+            "custom_fields": {
+            }
+        }
+    ],
+    "query": {
+        "ignore_sticky_posts": true
+    }
+}
