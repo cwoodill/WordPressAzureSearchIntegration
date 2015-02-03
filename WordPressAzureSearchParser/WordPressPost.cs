@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace WordPressAzureSearchParser
 {
+    /// <summary>
+    /// Value object representing a single WordPress post.
+    /// </summary>
     public class WordPressPost
     {
         public int Id { get; set; }

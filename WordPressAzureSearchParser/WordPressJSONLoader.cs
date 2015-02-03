@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Threading.Tasks;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
@@ -12,8 +11,17 @@ using System.IO;
 
 namespace WordPressAzureSearchParser
 {
+    /// <summary>
+    /// Service class for loading WordPress posts.  Assumes the availability of the WordPress REST JSON API plugin for loading WordPress posts through JSON.
+    /// </summary>
     public class WordPressJSONLoader
     {
+
+        /// <summary>
+        /// Loads WordPress posts from any WordPress blog.  
+        /// </summary>
+        /// <param name="URL">WordPress blog URL</param>
+        /// <returns></returns>
         
         public static WordPressPosts LoadAllPosts(string URL)
         {
@@ -26,30 +34,33 @@ namespace WordPressAzureSearchParser
                 StreamReader reader = new StreamReader(stream);
                 var results = JObject.Parse(reader.ReadLine());
                 var JsonPosts = results["posts"];
-
-                foreach (var JsonPost in JsonPosts)
+                if (JsonPosts != null)
                 {
-                    wordPressPosts.Posts.Add(loadPostFromJToken(JsonPost));
-                }
-
-                int pages = (int) results["pages"];
-                if (pages > 1)
-                {
-                    for(int i = 2; i<=pages; i++)
+                    foreach (var JsonPost in JsonPosts)
                     {
-                        query = "?json=get_posts&page=" + i;
-                        stream = client.OpenRead(URL + query);
-                        reader = new StreamReader(stream);
-                        results = JObject.Parse(reader.ReadLine());
-                        JsonPosts = results["posts"];
-
-                        foreach (var JsonPost in JsonPosts)
+                        wordPressPosts.Posts.Add(loadPostFromJToken(JsonPost));
+                    }
+                }
+                if (results["pages"] != null)
+                {
+                    int pages = (int)results["pages"];
+                    if (pages > 1)
+                    {
+                        for (int i = 2; i <= pages; i++)
                         {
-                            wordPressPosts.Posts.Add(loadPostFromJToken(JsonPost));
+                            query = "?json=get_posts&page=" + i;
+                            stream = client.OpenRead(URL + query);
+                            reader = new StreamReader(stream);
+                            results = JObject.Parse(reader.ReadLine());
+                            JsonPosts = results["posts"];
+
+                            foreach (var JsonPost in JsonPosts)
+                            {
+                                wordPressPosts.Posts.Add(loadPostFromJToken(JsonPost));
+                            }
                         }
                     }
                 }
-
                 return wordPressPosts;
 
             }
@@ -57,10 +68,13 @@ namespace WordPressAzureSearchParser
             {
                 throw;
             }
-                
-        
         }
 
+        /// <summary>
+        /// Load a post from incoming JSON object
+        /// </summary>
+        /// <param name="JsonPost">JSON object representing a single post.</param>
+        /// <returns>WordPressPost populated from JSON</returns>
         private static WordPressPost loadPostFromJToken(JToken JsonPost)
         {
             WordPressPost post = new WordPressPost();
